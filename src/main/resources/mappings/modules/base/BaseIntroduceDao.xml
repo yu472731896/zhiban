@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.base.dao.BaseIntroduceDao">
+    
+	<sql id="baseIntroduceColumns">
+		a.id AS "id",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag",
+		a.tital AS "tital",
+		a.index AS "index",
+		a.path AS "path",
+		a.user AS "user"
+	</sql>
+	
+	<sql id="baseIntroduceJoins">
+	</sql>
+    
+	<select id="get" resultType="BaseIntroduce">
+		SELECT 
+			<include refid="baseIntroduceColumns"/>
+		FROM base_introduce a
+		<include refid="baseIntroduceJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="BaseIntroduce">
+		SELECT 
+			<include refid="baseIntroduceColumns"/>
+		FROM base_introduce a
+		<include refid="baseIntroduceJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="beginCreateDate != null and endCreateDate != null and beginCreateDate != '' and endCreateDate != ''">
+				AND a.create_date BETWEEN #{beginCreateDate} AND #{endCreateDate}
+			</if>
+			<if test="tital != null and tital != ''">
+				AND a.tital LIKE 
+					<if test="dbName == 'oracle'">'%'||#{tital}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{tital}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{tital},'%')</if>
+			</if>
+			<if test="user != null and user != ''">
+				AND a.user LIKE 
+					<if test="dbName == 'oracle'">'%'||#{user}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{user}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{user},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="BaseIntroduce">
+		SELECT 
+			<include refid="baseIntroduceColumns"/>
+		FROM base_introduce a
+		<include refid="baseIntroduceJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO base_introduce(
+			id,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag,
+			tital,
+			index,
+			path,
+			user
+		) VALUES (
+			#{id},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag},
+			#{tital},
+			#{index},
+			#{path},
+			#{user}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE base_introduce SET 	
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks},
+			tital = #{tital},
+			index = #{index},
+			path = #{path},
+			user = #{user}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE base_introduce SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
