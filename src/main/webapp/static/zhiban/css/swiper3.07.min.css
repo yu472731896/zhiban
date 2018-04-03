@@ -196,6 +196,7 @@
 	width: 8px;
 	height: 8px;
 	display: inline-block;
+	border-radius: 100%;
 	background: #000;
 	opacity: .2
 }
@@ -478,38 +479,38 @@
 
 #slide .swiper-slide {
 	text-align: center;
-	padding: 0 20px;
-	box-sizing: border-box;
 }
 
 #slide .swiper-slide img {
-	width: 100%;
+	max-width: 100%;
 	min-height: 173px;
-	border-radius: 8px;
 }
 
 #slide .pagination {
 	position: absolute;
 	z-index: 9;
-	bottom: 12px;
+	bottom: 0;
 	right: 0;
 	height: 14px;
 	padding: 8px;
 	width: 100%;
-	text-align: center;
+	text-align: right;
+	background: rgba(86, 82, 82, 0.75)
 	
 }
 
 #slide .swiper-pagination-bullet {
 	display: inline-block;
-	width: 16px;
-	height: 6px;
-	background: #d9d9d9;
+	width: 10px;
+	height: 10px;
+	border-radius: 10px;
+	background: none;
+	border: 2px solid #000;
 	margin: 0 6px;
 	cursor: pointer;
-	border-radius: 8px;
 }
 
 #slide .swiper-pagination-bullet-active {
-	background: #66baea;
+	background: #fff;
+	border: 2px solid #fff;
 }
