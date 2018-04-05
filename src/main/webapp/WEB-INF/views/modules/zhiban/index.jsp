@@ -27,7 +27,7 @@
 	</head>
 
 	<body class="bg_index">
-		<div style="background: rgba(12, 12, 12, 0.2);">
+		<div style="background: rgba(12, 12, 12, 0.2);padding-bottom: 56px;">
 			<!--公司-->
 			<div class="top_nav">
 				<svg class="icon" aria-hidden="true">
@@ -64,6 +64,13 @@
 						<use xlink:href="#icon-liulan"></use>
 					</svg>
 					<span>123</span>
+				</div>
+				
+				<!--音乐-->
+				<div id="music" class="music">
+					<svg class="icon play" aria-hidden="true">
+						<use xlink:href="#icon-yinle"></use>
+					</svg>
 				</div>
 				
 			</div>
@@ -152,6 +159,25 @@
 				</ul>
 			</div>
 		</div>
+		
+		<!--底部-->
+		<div class="footer">
+			<svg class="icon goleft" aria-hidden="true">
+				<use xlink:href="#icon-left"></use>
+			</svg>
+			<svg class="icon gohome" aria-hidden="true">
+				<use xlink:href="#icon-shouye"></use>
+			</svg>
+			<svg class="icon goshare" aria-hidden="true">
+				<use xlink:href="#icon-fenxiang"></use>
+			</svg>
+			
+		</div>
+		<!--音乐-->
+		<audio class="audio" autoplay="autoplay">
+			<source src="music/AllanTaylorScotty.mp3" type="audio/mp3" media="">
+		</audio>
+		
 		<!--微信名片-->
 		<div class="null_box"></div>
 		<div class="wechat_box">
@@ -184,6 +210,33 @@
 			$(".icon_close").click(function() {
 				$(".wechat_box,.null_box").fadeOut(300);
 			});
+			
+			//音乐
+			window.onload = function() {
+				var music = document.getElementById("music");
+				var audio = document.getElementsByTagName("audio")[0];
+				audio.addEventListener('ended', function() {
+					// Wait 500 milliseconds before next loop  
+					setTimeout(function() {
+						audio.play();
+					}, 500);
+				}, false);
+				audio.play();
+				music.onclick = function() {
+					if(audio.paused) {
+						audio.play();
+						music.setAttribute('class', "play");
+						// music.style.animationPlayState="running";
+						// music.style.webkitanimationPlayState="running";
+					} else {
+						audio.pause();
+						music.setAttribute("class", "");
+						// music.style.animationPlayState="paused";
+						// music.style.webkitanimationPlayState="paused";
+					}
+
+				};
+			};
 		</script>
 	</body>
 
