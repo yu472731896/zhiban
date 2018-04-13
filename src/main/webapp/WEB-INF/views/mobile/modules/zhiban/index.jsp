@@ -1,11 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
-
 	<head>
 		<meta charset="UTF-8">
 		<title>智能陪伴，快乐成长</title>
-
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -13,27 +11,19 @@
 		<meta http-equiv="Pragma" content="no-cache" />
 		<meta http-equiv="Expires" content="0" />
 		<!--微信不缓存东西  end-->
-		<link rel="stylesheet" type="text/css" href="${ctxStatic}/zhiban/css/reset.css" />
-		<link rel="stylesheet" href="${ctxStatic}/zhiban/css/swiper3.07.min.css">
-		<link rel="stylesheet" href="${ctxStatic}/zhiban/css/animate.min.css">
-		<link rel="stylesheet" href="${ctxStatic}/zhiban/css/demo.css" />
-
-		<script src="${ctxStatic}/zhiban/js/swiper.min.js"></script>
-		<script src="${ctxStatic}/zhiban/js/swiper.animate.min.js"></script>
-		<script type="text/javascript" src="${ctxStatic}/zhiban/js/jquery-1.8.3.min.js"></script>
-
-		<script src="${ctxStatic}/zhiban/iconfont/iconfont.js"></script>
+		<%@include file="/WEB-INF/views/include/head.jsp" %>
 		<script src="//at.alicdn.com/t/font_583524_zxq3knl7iwv78pvi.js"></script>
 	</head>
 
 	<body class="bg_index">
-		<div style="background: rgba(12, 12, 12, 0.2);">
+		<div style="background: rgba(12, 12, 12, 0.2);padding-bottom: 56px;">
 			<!--公司-->
 			<div class="top_nav">
 				<svg class="icon" aria-hidden="true">
 					<use xlink:href="#icon-mulu"></use>
 				</svg>
 				<span>广州知伴人工智能科技有限公司</span>
+			
 			</div>
 			<!--个人信息-->
 			<div class="info">
@@ -58,6 +48,9 @@
 					</div>
 				</div>
 				
+				
+				<a href="${ctx}/f/core/login" >登陆我的名片</a>
+				
 				<!--浏览量-->
 				<div class="view">
 					<svg class="icon" aria-hidden="true">
@@ -66,11 +59,24 @@
 					<span>123</span>
 				</div>
 				
+				<!--音乐-->
+				<div id="music" class="music play">
+					<svg class="icon " aria-hidden="true">
+						<use xlink:href="#icon-yinle"></use>
+					</svg>
+				</div>
+				
 			</div>
 			<!--banner图-->
 			<div class="banner_box">
 				<div class="swiper-container" id="slide">
 					<div class="swiper-wrapper">
+					
+					<!-- 循环遍历 -->
+					<%-- <c:forEach items="${page.list}" var="baseEnt">
+					
+					</c:forEach> --%>
+					
 						<a class="swiper-slide" href="#" title="">
 							<img src="${ctxStatic}/zhiban/img/banner_01.jpg" />
 						</a>
@@ -86,6 +92,8 @@
 				<p class="common_title">
 					<img src="${ctxStatic}/zhiban/img/title_01.png" />
 				</p>
+				
+				<!-- 循环遍历 -->
 
 				<div class="friendly_link" onclick="window.location='http://jinghua.shequnpay.com/ChatRoomMsgUserNewNew.aspx?nRecID=2452737'">
 					<svg class="icon friendlylink_icon" aria-hidden="true" style="background: #f9c10c;">
@@ -133,6 +141,9 @@
 				<!--<div class="Magazine_type">
 				</div>-->
 				<ul class="Magazine_lists">
+				
+				<!-- 循环遍历 -->
+				
 					<li class="news_box">
 						<p class="nwes_title">1-14岁孩子成长密码，耶鲁大学跟踪研究40年的成果</p>
 						<img class="news_backcover" src="http://7xk5td.com1.z0.glb.clouddn.com/weixin_LTE4ODA2NTI3ODk=0.jpg-img200112" />
@@ -152,6 +163,25 @@
 				</ul>
 			</div>
 		</div>
+		
+		<!--底部-->
+		<div class="footer">
+			<svg class="icon goleft" aria-hidden="true">
+				<use xlink:href="#icon-left"></use>
+			</svg>
+			<svg class="icon gohome" aria-hidden="true">
+				<use xlink:href="#icon-shouye"></use>
+			</svg>
+			<svg class="icon goshare" aria-hidden="true">
+				<use xlink:href="#icon-fenxiang"></use>
+			</svg>
+			
+		</div>
+		<!--音乐-->
+		<audio class="audio" autoplay="autoplay">
+			<source src="music/AllanTaylorScotty.mp3" type="audio/mp3" media="">
+		</audio>
+		
 		<!--微信名片-->
 		<div class="null_box"></div>
 		<div class="wechat_box">
@@ -184,6 +214,33 @@
 			$(".icon_close").click(function() {
 				$(".wechat_box,.null_box").fadeOut(300);
 			});
+			
+			//音乐
+			window.onload = function() {
+				var music = document.getElementById("music");
+				var audio = document.getElementsByTagName("audio")[0];
+				audio.addEventListener('ended', function() {
+					// Wait 500 milliseconds before next loop  
+					setTimeout(function() {
+						audio.play();
+					}, 500);
+				}, false);
+				audio.play();
+				music.onclick = function() {
+					if(audio.paused) {
+						audio.play();
+						music.setAttribute('class', "play");
+						// music.style.animationPlayState="running";
+						// music.style.webkitanimationPlayState="running";
+					} else {
+						audio.pause();
+						music.setAttribute("class", "");
+						// music.style.animationPlayState="paused";
+						// music.style.webkitanimationPlayState="paused";
+					}
+
+				};
+			};
 		</script>
 	</body>
 

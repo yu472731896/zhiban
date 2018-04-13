@@ -4,7 +4,7 @@
 	<diskStore path="../temp/jeesite/ehcache" />
 
 	<!-- 默认缓存配置. 自动失效：最后一次访问时间间隔300秒失效，若没有访问过自创建时间600秒失效。-->
-	<defaultCache maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="600"
+	<defaultCache maxEntriesLocalHeap="1000" eternal="false" timeToIdleSeconds="3000" timeToLiveSeconds="6000"
 		overflowToDisk="true" statistics="true"/>
 	
 	<!-- 系统缓存 -->

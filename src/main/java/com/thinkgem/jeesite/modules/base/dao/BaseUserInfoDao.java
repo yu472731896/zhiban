@@ -5,14 +5,14 @@ package com.thinkgem.jeesite.modules.base.dao;
 
 import com.thinkgem.jeesite.common.persistence.CrudDao;
 import com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao;
-import com.thinkgem.jeesite.modules.base.entity.BaseNovelUser;
+import com.thinkgem.jeesite.modules.base.entity.BaseUserInfo;
 
 /**
- * 小说用户表信息表DAO接口
+ * 用户基础信息DAO接口
  * @author minghui
- * @version 2018-02-22
+ * @version 2018-04-13
  */
 @MyBatisDao
-public interface BaseNovelUserDao extends CrudDao<BaseNovelUser> {
+public interface BaseUserInfoDao extends CrudDao<BaseUserInfo> {
 	
 }

@@ -1,6 +1,5 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
-
 	<head>
 		<meta charset="utf-8" />
 		<title>登录</title>
@@ -13,28 +12,25 @@
 		<meta http-equiv="Pragma" content="no-cache" />
 		<meta http-equiv="Expires" content="0" />
 		<!--微信不缓存东西  end-->
-
-		<link rel="stylesheet" type="text/css" href="css/reset.css" />
-		<link rel="stylesheet" type="text/css" href="css/demo.css">
-		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+		<%@include file="/WEB-INF/views/include/head.jsp" %>
 		<script src="//at.alicdn.com/t/font_583524_fowoce8mkx6o5hfr.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 
 	<body class="bg_login">
-		<form class="user_login_box" action="return flase" method="post">
+		<form class="user_login_box" action="${ctx}/zhiban/core/login" method="post">
 			<div style="text-align: center;">
 				<svg class="icon" aria-hidden="true" style="width: 40px;height: 40px;">
 					<use xlink:href="#icon-login_user"></use>
 				</svg>
 			</div>
 			<h2 class="login_title">登录</h2>
-			<input type="text" name="" value="" placeholder="请输入用户名或手机号码" />
-			<input type="password" name="" value="" placeholder="请输入密码" />
+			<input id="username" name="username" type="text" value="" placeholder="请输入用户名或手机号码" />
+			<input id="password" name="password"  type="password" value="" placeholder="请输入密码" />
 			<p class="small_operation">
-				<a href="user_password.html">修改密码</a>
-				<a style="float: right;" href="user_register.html">还没有账号，去注册&gt;</a>
+				<!-- <a href="user_password.html">修改密码</a> -->
+				<a style="float: right;" href="${ctx}/f/core/login">还没有账号，去注册&gt;</a>
 			</p>
-			<button class="common_btn">登录</button>
+			<button type="submit"  class="common_btn">登录</button>
 		</form>
 
 	</body>

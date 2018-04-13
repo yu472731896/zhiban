@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 
 	<head>
@@ -13,11 +14,7 @@
         <meta http-equiv="Pragma" content="no-cache" />
         <meta http-equiv="Expires" content="0" />
         <!--微信不缓存东西  end-->
-
-		<link rel="stylesheet" type="text/css" href="css/reset.css" />
-		<link rel="stylesheet" type="text/css" href="css/demo.css">
-		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+		<%@include file="/WEB-INF/views/include/head.jsp" %>
 		<script src="//at.alicdn.com/t/font_583524_fowoce8mkx6o5hfr.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 
@@ -33,7 +30,7 @@
 			<input type="tel" name="" value="" placeholder="请输入手机号码" />
 			<input type="password" name="" value="" placeholder="请输入密码" />
 			<p class="small_operation">
-				<a style="float: right;" href="user_register.html">已有账号，立即登录&gt;</a>
+				<a style="float: right;" href="${ctx}/f/core/login">已有账号，立即登录&gt;</a>
 			</p>
 			<button class="common_btn">登录</button>
 		</form>

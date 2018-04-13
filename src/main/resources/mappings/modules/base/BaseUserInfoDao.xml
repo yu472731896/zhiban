@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.base.dao.BaseUserInfoDao">
+    
+	<sql id="baseUserInfoColumns">
+		a.id AS "id",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag",
+		a.user_id AS "user.id",
+		a.ent_name AS "entName",
+		a.access_amount AS "accessAmount",
+		a.phone AS "phone",
+		a.weixin AS "weixin",
+		a.weixin_ma AS "weixinMa",
+		u8.name AS "user.name"
+	</sql>
+	
+	<sql id="baseUserInfoJoins">
+		LEFT JOIN sys_user u8 ON u8.id = a.user_id
+	</sql>
+    
+	<select id="get" resultType="BaseUserInfo">
+		SELECT 
+			<include refid="baseUserInfoColumns"/>
+		FROM base_user_info a
+		<include refid="baseUserInfoJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="BaseUserInfo">
+		SELECT 
+			<include refid="baseUserInfoColumns"/>
+		FROM base_user_info a
+		<include refid="baseUserInfoJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="entName != null and entName != ''">
+				AND a.ent_name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{entName}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{entName}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{entName},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="BaseUserInfo">
+		SELECT 
+			<include refid="baseUserInfoColumns"/>
+		FROM base_user_info a
+		<include refid="baseUserInfoJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO base_user_info(
+			id,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag,
+			user_id,
+			ent_name,
+			access_amount,
+			phone,
+			weixin,
+			weixin_ma
+		) VALUES (
+			#{id},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag},
+			#{user.id},
+			#{entName},
+			#{accessAmount},
+			#{phone},
+			#{weixin},
+			#{weixinMa}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE base_user_info SET 	
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks},
+			user_id = #{user.id},
+			ent_name = #{entName},
+			access_amount = #{accessAmount},
+			phone = #{phone},
+			weixin = #{weixin},
+			weixin_ma = #{weixinMa}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE base_user_info SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

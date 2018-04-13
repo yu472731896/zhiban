@@ -94,10 +94,10 @@
 		</mvc:interceptor>
 		
 		<!-- 判断是否登录 -->
-		<mvc:interceptor>
+	<!-- 	<mvc:interceptor>
 		<mvc:mapping path="${frontPath}/base*/**" />
 			<bean class="com.thinkgem.jeesite.modules.sys.interceptor.LoginInterceptor" />
-		</mvc:interceptor>
+		</mvc:interceptor> -->
 		
 		<!-- 手机视图拦截器 -->
 		<mvc:interceptor>

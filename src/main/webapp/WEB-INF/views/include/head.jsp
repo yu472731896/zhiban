@@ -19,3 +19,16 @@
 <link href="${ctxStatic}/common/jeesite.css" type="text/css" rel="stylesheet" />
 <script src="${ctxStatic}/common/jeesite.js" type="text/javascript"></script>
 <script type="text/javascript">var ctx = '${ctx}', ctxStatic='${ctxStatic}';</script>
+
+
+<!-- 以下智伴项目相关文件 -->
+			
+		<link rel="stylesheet" type="text/css" href="${ctxStatic}/zhiban/css/reset.css" />
+		<link rel="stylesheet" href="${ctxStatic}/zhiban/css/swiper3.07.min.css">
+		<link rel="stylesheet" href="${ctxStatic}/zhiban/css/animate.min.css">
+		<link rel="stylesheet" href="${ctxStatic}/zhiban/css/demo.css" />
+		<script src="${ctxStatic}/zhiban/js/swiper.min.js"></script>
+		<script src="${ctxStatic}/zhiban/js/swiper.animate.min.js"></script>
+		<script type="text/javascript" src="${ctxStatic}/zhiban/js/jquery-1.8.3.min.js"></script>
+		<script src="${ctxStatic}/zhiban/iconfont/iconfont.js"></script>
+	<!-- 以上智伴项目相关文件 -->	
