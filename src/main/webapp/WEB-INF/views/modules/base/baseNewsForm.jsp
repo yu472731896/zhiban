@@ -27,18 +27,12 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/base/baseNews/">我的资讯列表</a></li>
+		<li><a href="${ctx}/base/baseNews/list">我的资讯列表</a></li>
 		<li class="active"><a href="${ctx}/base/baseNews/form?id=${baseNews.id}">我的资讯<shiro:hasPermission name="base:baseNews:edit">${not empty baseNews.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="base:baseNews:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="baseNews" action="${ctx}/base/baseNews/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
-		<div class="control-group">
-			<label class="control-label">备注信息：</label>
-			<div class="controls">
-				<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
-			</div>
-		</div>
 		<div class="control-group">
 			<label class="control-label">标题：</label>
 			<div class="controls">
@@ -53,17 +47,12 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">content：</label>
+			<label class="control-label">内容：</label>
 			<div class="controls">
 				<form:textarea path="content" htmlEscape="false" rows="4" maxlength="3000" class="input-xxlarge "/>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">用户主键：</label>
-			<div class="controls">
-				<form:input path="user.id" htmlEscape="false" maxlength="64" class="input-xlarge "/>
-			</div>
-		</div>
+		
 		<div class="form-actions">
 			<shiro:hasPermission name="base:baseNews:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>

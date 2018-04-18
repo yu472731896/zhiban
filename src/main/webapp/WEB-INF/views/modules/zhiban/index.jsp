@@ -12,6 +12,7 @@
 		<meta http-equiv="Expires" content="0" />
 		<!--微信不缓存东西  end-->
 		<%@include file="/WEB-INF/views/include/head.jsp" %>
+		<%@include file="/WEB-INF/views/include/zhibanHead.jsp" %>
 		<script src="//at.alicdn.com/t/font_583524_zxq3knl7iwv78pvi.js"></script>
 	</head>
 

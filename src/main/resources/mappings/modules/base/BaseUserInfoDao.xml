@@ -16,6 +16,9 @@
 		a.phone AS "phone",
 		a.weixin AS "weixin",
 		a.weixin_ma AS "weixinMa",
+		a.position AS "position",
+		a.title_info AS "titleInfo",
+		a.music_file AS "musicFile",
 		u8.name AS "user.name"
 	</sql>
 	
@@ -43,6 +46,9 @@
 					<if test="dbName == 'oracle'">'%'||#{entName}||'%'</if>
 					<if test="dbName == 'mssql'">'%'+#{entName}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{entName},'%')</if>
+			</if>
+			<if test="user != null and user.id != null and user.id != ''">
+				AND a.user_id = #{user.id}
 			</if>
 		</where>
 		<choose>
@@ -87,6 +93,9 @@
 			access_amount,
 			phone,
 			weixin,
+			position,
+			title_info,
+			music_file,
 			weixin_ma
 		) VALUES (
 			#{id},
@@ -101,6 +110,9 @@
 			#{accessAmount},
 			#{phone},
 			#{weixin},
+			#{position},
+			#{titleInfo},
+			#{musicFile},
 			#{weixinMa}
 		)
 	</insert>
@@ -115,6 +127,9 @@
 			access_amount = #{accessAmount},
 			phone = #{phone},
 			weixin = #{weixin},
+			position = #{position},
+			title_info = #{titleInfo},
+			music_file = #{musicFile},
 			weixin_ma = #{weixinMa}
 		WHERE id = #{id}
 	</update>

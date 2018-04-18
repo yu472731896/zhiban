@@ -1,11 +1,11 @@
 package com.thinkgem.jeesite.modules.base.web;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.google.common.collect.Maps;
 import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.security.shiro.session.SessionDAO;
-import com.thinkgem.jeesite.common.servlet.ValidateCodeServlet;
 import com.thinkgem.jeesite.common.utils.CacheUtils;
-import com.thinkgem.jeesite.common.utils.IdGen;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.common.web.BaseController;
+import com.thinkgem.jeesite.modules.base.entity.BaseNews;
+import com.thinkgem.jeesite.modules.base.entity.BaseUserInfo;
+import com.thinkgem.jeesite.modules.base.service.BaseNewsService;
+import com.thinkgem.jeesite.modules.base.service.BaseUserInfoService;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.security.FormAuthenticationFilter;
 import com.thinkgem.jeesite.modules.sys.security.SystemAuthorizingRealm.Principal;
@@ -33,6 +35,13 @@ public class CoreController extends BaseController {
 
 	@Autowired
 	private SessionDAO sessionDAO;
+	
+	@Autowired
+	private BaseUserInfoService baseUserInfoService;
+	
+	@Autowired
+	private BaseNewsService baseNewsService;
+	
 	
 /*	@ModelAttribute
 	public BaseIntroduce get(@RequestParam(required=false) String id) {
@@ -52,12 +61,37 @@ public class CoreController extends BaseController {
 		return "modules/zhiban/index";
 	}*/
 	
-	@RequestMapping("/view/{id}")
-	public String list(@PathVariable("id") String userid, HttpServletRequest request, HttpServletResponse response, Model model) {
-	
-			
-		return "modules/zhiban/index";
+	@RequestMapping("/view/{userId}")
+	public String list(@PathVariable("userId") String userId , HttpServletRequest request, HttpServletResponse response, Model model) {
+		
+		//获取用户信息
+		BaseUserInfo newUserInfo = new BaseUserInfo();
+		List<BaseUserInfo> userInfoList= baseUserInfoService.findList(newUserInfo);
+		//获取新闻列表
+		BaseNews baseNews = new BaseNews();
+		List<BaseNews> newsList = baseNewsService.findList(baseNews);
+		
+		BaseUserInfo userInfo = userInfoList.get(0);
+		
+		//替换二维码地址中的 "|" 符号
+		if(userInfo != null && StringUtils.isNoneBlank(userInfo.getWeixinMa())){
+			String weixinMa = userInfo.getWeixinMa();
+			userInfo.setWeixinMa(weixinMa.replace("|", "")); 
+		}
+		
+		//替换二维码地址中的 "|" 符号
+		if(userInfo != null && StringUtils.isNoneBlank(userInfo.getMusicFile())){
+			String musicFile = userInfo.getMusicFile();
+			userInfo.setMusicFile(musicFile.replace("|", "")); 
+		}
+		
+		model.addAttribute("userInfo", userInfo);
+		model.addAttribute("newsList", newsList);
+		
+		return "modules/zhiban/moban";
 	}
+	
+	
 	
 	//登陆跳转页面
 	@RequestMapping(value = "login")

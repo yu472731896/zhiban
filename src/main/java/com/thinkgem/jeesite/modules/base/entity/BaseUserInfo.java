@@ -20,8 +20,12 @@ public class BaseUserInfo extends DataEntity<BaseUserInfo> {
 	private String entName;		// 企业名称
 	private String accessAmount;		// 浏览量
 	private String phone;		// 联系电话
-	private String weixin;		// weixin
+	private String weixin;		// 微信号
 	private String weixinMa;		// 微信二维码图片
+	
+	private String position; //职位
+	private String titleInfo; //标题信息
+	private String musicFile; //背景音乐
 	
 	public BaseUserInfo() {
 		super();
@@ -83,5 +87,31 @@ public class BaseUserInfo extends DataEntity<BaseUserInfo> {
 	public void setWeixinMa(String weixinMa) {
 		this.weixinMa = weixinMa;
 	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	public String getTitleInfo() {
+		return titleInfo;
+	}
+
+	public void setTitleInfo(String titleInfo) {
+		this.titleInfo = titleInfo;
+	}
+
+	public String getMusicFile() {
+		return musicFile;
+	}
+
+	public void setMusicFile(String musicFile) {
+		this.musicFile = musicFile;
+	}
+
+	
 	
 }

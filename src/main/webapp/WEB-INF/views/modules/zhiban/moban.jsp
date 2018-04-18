@@ -23,41 +23,37 @@
 				<svg class="icon" aria-hidden="true">
 					<use xlink:href="#icon-mulu"></use>
 				</svg>
-				<span>广州知伴人工智能科技有限公司</span>
+				<span>${userInfo.entName}</span>
 			
 			</div>
 			<!--个人信息-->
 			<div class="info">
 				<img class="head" src="${ctxStatic}/zhiban/img/head_default.png" />
 				<p>郝斌</p>
-				<p>广州知伴人工智能科技有限公司<br /> 城市合伙人(执行董事)</p>
-				<p>人工智能机器人全国招商</p>
+				<p>${userInfo.entName}<br /> ${userInfo.position}</p>
+				<p>${userInfo.titleInfo}</p>
 
 				<div class="contact_info">
 					<a class="contact_type" href="tel:13203509288">
 						<svg class="icon" aria-hidden="true">
 							<use xlink:href="#icon-dianhua"></use>
 						</svg>
-						13203509288
+						${userInfo.phone}
 					</a>
 					<div class="contact_type">
 						<svg class="icon" aria-hidden="true">
 							<use xlink:href="#icon-weixin"></use>
 						</svg>
-						&nbsp;HYH2013_8
+						&nbsp;${userInfo.weixin}
 						<button class="btn_add_wechat">加微信</button>
 					</div>
 				</div>
-				
-				
-				<a href="${ctx}/f/core/login" >登陆我的名片</a>
-				
 				<!--浏览量-->
 				<div class="view">
 					<svg class="icon" aria-hidden="true">
 						<use xlink:href="#icon-liulan"></use>
 					</svg>
-					<span>123</span>
+					<span>${userInfo.accessAmount}</span>
 				</div>
 				
 				<!--音乐-->
@@ -180,14 +176,14 @@
 		</div>
 		<!--音乐-->
 		<audio class="audio" autoplay="autoplay">
-			<source src="music/AllanTaylorScotty.mp3" type="audio/mp3" media="">
+			<source src="${userInfo.musicFile }" type="audio/mp3" media="">
 		</audio>
 		
 		<!--微信名片-->
 		<div class="null_box"></div>
 		<div class="wechat_box">
 			<div class="code_box">
-				<img class="code" src="${ctxStatic}/zhiban/img/personal_wechat.jpg" />
+				<img class="code" src="${userInfo.weixinMa}" />
 				<p>长摁识别加微信</p>
 			</div>
 			<svg class="icon icon_close" aria-hidden="true">

@@ -33,39 +33,38 @@
 	<form:form id="inputForm" modelAttribute="baseUserInfo" action="${ctx}/base/baseUserInfo/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
-		<div class="control-group">
-			<label class="control-label">备注信息：</label>
-			<div class="controls">
-				<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">用户主键：</label>
-			<div class="controls">
-				<sys:treeselect id="user" name="user.id" value="${baseUserInfo.user.id}" labelName="user.name" labelValue="${baseUserInfo.user.name}"
-					title="用户" url="/sys/office/treeData?type=3" cssClass="" allowClear="true" notAllowSelectParent="true"/>
-			</div>
-		</div>
+		
+		
 		<div class="control-group">
 			<label class="control-label">企业名称：</label>
 			<div class="controls">
 				<form:input path="entName" htmlEscape="false" maxlength="100" class="input-xlarge "/>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">浏览量：</label>
-			<div class="controls">
-				<form:input path="accessAmount" htmlEscape="false" maxlength="100" class="input-xlarge "/>
-			</div>
-		</div>
+		
 		<div class="control-group">
 			<label class="control-label">联系电话：</label>
 			<div class="controls">
 				<form:input path="phone" htmlEscape="false" maxlength="11" class="input-xlarge "/>
 			</div>
 		</div>
+		
 		<div class="control-group">
-			<label class="control-label">weixin：</label>
+			<label class="control-label">职位：</label>
+			<div class="controls">
+				<form:input path="position" htmlEscape="false" maxlength="20" class="input-xlarge "/>
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label">标题信息：</label>
+			<div class="controls">
+				<form:textarea path="titleInfo" htmlEscape="false" maxlength="255" class="input-xlarge "/>
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label">微信号：</label>
 			<div class="controls">
 				<form:input path="weixin" htmlEscape="false" maxlength="100" class="input-xlarge "/>
 			</div>
@@ -75,6 +74,16 @@
 			<div class="controls">
 				<form:hidden id="weixinMa" path="weixinMa" htmlEscape="false" maxlength="255" class="input-xlarge"/>
 				<sys:ckfinder input="weixinMa" type="files" uploadPath="/base/baseUserInfo" selectMultiple="true"/>
+			</div>
+		</div>
+		
+		
+		
+		<div class="control-group">
+			<label class="control-label">背景音乐：</label>
+			<div class="controls">
+				<form:hidden id="musicFile" path="musicFile" htmlEscape="false" maxlength="255" class="input-xlarge"/>
+				<sys:ckfinder input="musicFile" type="music" uploadPath="/base/baseUserInfo" selectMultiple="true"/>
 			</div>
 		</div>
 		<div class="form-actions">

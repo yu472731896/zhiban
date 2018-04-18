@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.service.CrudService;
 import com.thinkgem.jeesite.modules.base.entity.BaseNews;
+import com.thinkgem.jeesite.modules.sys.entity.User;
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 import com.thinkgem.jeesite.modules.base.dao.BaseNewsDao;
 
 /**
@@ -36,6 +38,9 @@ public class BaseNewsService extends CrudService<BaseNewsDao, BaseNews> {
 	
 	@Transactional(readOnly = false)
 	public void save(BaseNews baseNews) {
+		User currUser = UserUtils.getUser();
+		baseNews.setUser(currUser);
+		
 		super.save(baseNews);
 	}
 	
