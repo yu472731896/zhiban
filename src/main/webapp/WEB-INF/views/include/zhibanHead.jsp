@@ -22,13 +22,18 @@
 
 
 <!-- 以下智伴项目相关文件 -->
-			
-		<link rel="stylesheet" type="text/css" href="${ctxStatic}/zhiban/css/reset.css" />
-		<link rel="stylesheet" href="${ctxStatic}/zhiban/css/swiper3.07.min.css">
-		<link rel="stylesheet" href="${ctxStatic}/zhiban/css/animate.min.css">
-		<link rel="stylesheet" href="${ctxStatic}/zhiban/css/demo.css" />
-		<script src="${ctxStatic}/zhiban/js/swiper.min.js"></script>
-		<script src="${ctxStatic}/zhiban/js/swiper.animate.min.js"></script>
-		<script type="text/javascript" src="${ctxStatic}/zhiban/js/jquery-1.8.3.min.js"></script>
-		<script src="${ctxStatic}/zhiban/iconfont/iconfont.js"></script>
-	<!-- 以上智伴项目相关文件 -->	
+	<link rel="stylesheet" type="text/css" href="${ctxStatic}/zhiban/css/reset.css" />
+	<link rel="stylesheet" href="${ctxStatic}/zhiban/css/swiper3.07.min.css">
+	<link rel="stylesheet" href="${ctxStatic}/zhiban/css/animate.min.css">
+	<link rel="stylesheet" href="${ctxStatic}/zhiban/css/demo.css" />
+	<script src="${ctxStatic}/zhiban/js/swiper.min.js"></script>
+	<script src="${ctxStatic}/zhiban/js/swiper.animate.min.js"></script>
+	<script type="text/javascript" src="${ctxStatic}/zhiban/js/jquery-1.8.3.min.js"></script>
+	<script src="${ctxStatic}/zhiban/iconfont/iconfont.js"></script>
+	
+	<!-- baidu富文本 -->
+	 <!-- 配置文件 -->
+	    <script type="text/javascript" src="${ctxStatic}/ueditor/ueditor.config.js"></script>
+	    <!-- 编辑器源码文件 -->
+	    <script type="text/javascript" src="${ctxStatic}/ueditor/ueditor.all.js"></script>
+<!-- 以上智伴项目相关文件 -->	
