@@ -20,4 +20,9 @@
 <script src="${ctxStatic}/common/jeesite.js" type="text/javascript"></script>
 <script type="text/javascript">var ctx = '${ctx}', ctxStatic='${ctxStatic}';</script>
 
+<!-- baidu富文本 -->
+<!-- 配置文件 -->
+<script type="text/javascript" src="${ctxStatic}/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="${ctxStatic}/ueditor/ueditor.all.js"></script>
 
