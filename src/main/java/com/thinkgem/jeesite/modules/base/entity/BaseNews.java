@@ -24,6 +24,9 @@ public class BaseNews extends DataEntity<BaseNews> {
 	private Date beginCreateDate;		// 开始 创建时间
 	private Date endCreateDate;		// 结束 创建时间
 	
+	private Date beginUpdateDate;		// 开始 更新时间
+	private Date endUpdateDate;		// 结束 更新时间
+	
 	public BaseNews() {
 		super();
 	}
@@ -81,6 +84,22 @@ public class BaseNews extends DataEntity<BaseNews> {
 
 	public void setEndCreateDate(Date endCreateDate) {
 		this.endCreateDate = endCreateDate;
+	}
+
+	public Date getBeginUpdateDate() {
+		return beginUpdateDate;
+	}
+
+	public void setBeginUpdateDate(Date beginUpdateDate) {
+		this.beginUpdateDate = beginUpdateDate;
+	}
+
+	public Date getEndUpdateDate() {
+		return endUpdateDate;
+	}
+
+	public void setEndUpdateDate(Date endUpdateDate) {
+		this.endUpdateDate = endUpdateDate;
 	}
 		
 }

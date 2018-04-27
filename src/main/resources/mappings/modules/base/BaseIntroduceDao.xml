@@ -11,12 +11,14 @@
 		a.remarks AS "remarks",
 		a.del_flag AS "delFlag",
 		a.tital AS "tital",
-		a.index AS "index",
+		a.index_str AS "indexStr",
 		a.path AS "path",
-		a.user AS "user"
+		u1.name AS "user.name",
+		a.user AS "user.id"
 	</sql>
 	
 	<sql id="baseIntroduceJoins">
+		LEFT JOIN sys_user u1 ON u1.id = a.user
 	</sql>
     
 	<select id="get" resultType="BaseIntroduce">
@@ -37,17 +39,20 @@
 			<if test="beginCreateDate != null and endCreateDate != null and beginCreateDate != '' and endCreateDate != ''">
 				AND a.create_date BETWEEN #{beginCreateDate} AND #{endCreateDate}
 			</if>
+			<if test="beginUpdateDate != null and endUpdateDate != null and beginUpdateDate != '' and endUpdateDate != ''">
+				AND a.update_date BETWEEN #{beginUpdateDate} AND #{endUpdateDate}
+			</if>
 			<if test="tital != null and tital != ''">
 				AND a.tital LIKE 
 					<if test="dbName == 'oracle'">'%'||#{tital}||'%'</if>
 					<if test="dbName == 'mssql'">'%'+#{tital}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{tital},'%')</if>
 			</if>
-			<if test="user != null and user != ''">
-				AND a.user LIKE 
-					<if test="dbName == 'oracle'">'%'||#{user}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{user}+'%'</if>
-					<if test="dbName == 'mysql'">concat('%',#{user},'%')</if>
+			<if test="user != null and user.name != null and user.name != ''">
+				AND u1.name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{user.name}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{user.name}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{user.name},'%')</if>
 			</if>
 		</where>
 		<choose>
@@ -88,7 +93,7 @@
 			remarks,
 			del_flag,
 			tital,
-			index,
+			index_str,
 			path,
 			user
 		) VALUES (
@@ -100,9 +105,9 @@
 			#{remarks},
 			#{delFlag},
 			#{tital},
-			#{index},
+			#{indexStr},
 			#{path},
-			#{user}
+			#{user.id}
 		)
 	</insert>
 	
@@ -112,9 +117,9 @@
 			update_date = #{updateDate},
 			remarks = #{remarks},
 			tital = #{tital},
-			index = #{index},
+			index_str = #{indexStr},
 			path = #{path},
-			user = #{user}
+			user = #{user.id}
 		WHERE id = #{id}
 	</update>
 	

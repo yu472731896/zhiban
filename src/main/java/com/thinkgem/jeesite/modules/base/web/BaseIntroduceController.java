@@ -21,6 +21,7 @@ import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.base.entity.BaseIntroduce;
 import com.thinkgem.jeesite.modules.base.service.BaseIntroduceService;
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 
 /**
  * 介绍Controller
@@ -67,6 +68,7 @@ public class BaseIntroduceController extends BaseController {
 		if (!beanValidator(model, baseIntroduce)){
 			return form(baseIntroduce, model);
 		}
+		baseIntroduce.setUser(UserUtils.getUser());	
 		baseIntroduceService.save(baseIntroduce);
 		addMessage(redirectAttributes, "保存介绍成功");
 		return "redirect:"+Global.getAdminPath()+"/base/baseIntroduce/?repage";

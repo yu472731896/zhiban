@@ -17,12 +17,15 @@ import com.thinkgem.jeesite.modules.sys.entity.User;
 public class BaseTurnPicture extends DataEntity<BaseTurnPicture> {
 	
 	private static final long serialVersionUID = 1L;
-	private String index;		// 顺序
+	private String indexStr;		// 顺序
 	private String path;		// 图片
 	private User user;		// 用户主键
 	private String title;		// 标题
 	private Date beginCreateDate;		// 开始 创建时间
 	private Date endCreateDate;		// 结束 创建时间
+	
+	private Date beginUpdateDate;		// 开始 更新时间
+	private Date endUpdateDate;		// 结束 更新时间
 	
 	public BaseTurnPicture() {
 		super();
@@ -33,12 +36,12 @@ public class BaseTurnPicture extends DataEntity<BaseTurnPicture> {
 	}
 
 	@Length(min=0, max=24, message="顺序长度必须介于 0 和 24 之间")
-	public String getIndex() {
-		return index;
+	public String getIndexStr() {
+		return indexStr;
 	}
 
-	public void setIndex(String index) {
-		this.index = index;
+	public void setIndexStr(String indexStr) {
+		this.indexStr = indexStr;
 	}
 	
 	@Length(min=0, max=255, message="图片长度必须介于 0 和 255 之间")
@@ -81,6 +84,22 @@ public class BaseTurnPicture extends DataEntity<BaseTurnPicture> {
 
 	public void setEndCreateDate(Date endCreateDate) {
 		this.endCreateDate = endCreateDate;
+	}
+
+	public Date getBeginUpdateDate() {
+		return beginUpdateDate;
+	}
+
+	public void setBeginUpdateDate(Date beginUpdateDate) {
+		this.beginUpdateDate = beginUpdateDate;
+	}
+
+	public Date getEndUpdateDate() {
+		return endUpdateDate;
+	}
+
+	public void setEndUpdateDate(Date endUpdateDate) {
+		this.endUpdateDate = endUpdateDate;
 	}
 		
 }

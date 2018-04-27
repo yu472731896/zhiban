@@ -7,6 +7,7 @@ import java.util.Date;
 import org.hibernate.validator.constraints.Length;
 
 import com.thinkgem.jeesite.common.persistence.DataEntity;
+import com.thinkgem.jeesite.modules.sys.entity.User;
 
 /**
  * 介绍Entity
@@ -17,11 +18,14 @@ public class BaseIntroduce extends DataEntity<BaseIntroduce> {
 	
 	private static final long serialVersionUID = 1L;
 	private String tital;		// 标题
-	private String index;		// 顺序
+	private String indexStr;		// 顺序
 	private String path;		// 图片
-	private String user;		// 用户主键
+	private User user;		// 用户主键
 	private Date beginCreateDate;		// 开始 创建时间
 	private Date endCreateDate;		// 结束 创建时间
+	
+	private Date beginUpdateDate; // 开始 更新时间
+	private Date endUpdateDate; // 结束 更新时间
 	
 	public BaseIntroduce() {
 		super();
@@ -41,12 +45,12 @@ public class BaseIntroduce extends DataEntity<BaseIntroduce> {
 	}
 	
 	@Length(min=0, max=24, message="顺序长度必须介于 0 和 24 之间")
-	public String getIndex() {
-		return index;
+	public String getIndexStr() {
+		return indexStr;
 	}
 
-	public void setIndex(String index) {
-		this.index = index;
+	public void setIndexStr(String indexStr) {
+		this.indexStr = indexStr;
 	}
 	
 	@Length(min=0, max=255, message="图片长度必须介于 0 和 255 之间")
@@ -58,12 +62,11 @@ public class BaseIntroduce extends DataEntity<BaseIntroduce> {
 		this.path = path;
 	}
 	
-	@Length(min=0, max=64, message="用户主键长度必须介于 0 和 64 之间")
-	public String getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(String user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 	
@@ -81,6 +84,22 @@ public class BaseIntroduce extends DataEntity<BaseIntroduce> {
 
 	public void setEndCreateDate(Date endCreateDate) {
 		this.endCreateDate = endCreateDate;
+	}
+
+	public Date getBeginUpdateDate() {
+		return beginUpdateDate;
+	}
+
+	public void setBeginUpdateDate(Date beginUpdateDate) {
+		this.beginUpdateDate = beginUpdateDate;
+	}
+
+	public Date getEndUpdateDate() {
+		return endUpdateDate;
+	}
+
+	public void setEndUpdateDate(Date endUpdateDate) {
+		this.endUpdateDate = endUpdateDate;
 	}
 		
 }

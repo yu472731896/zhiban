@@ -27,7 +27,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/base/baseIntroduce/">介绍列表</a></li>
+		<li><a href="${ctx}/base/baseIntroduce/list">介绍列表</a></li>
 		<li class="active"><a href="${ctx}/base/baseIntroduce/form?id=${baseIntroduce.id}">介绍<shiro:hasPermission name="base:baseIntroduce:edit">${not empty baseIntroduce.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="base:baseIntroduce:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="baseIntroduce" action="${ctx}/base/baseIntroduce/save" method="post" class="form-horizontal">
@@ -41,16 +41,16 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">顺序：</label>
-			<div class="controls">
-				<form:input path="index" htmlEscape="false" maxlength="24" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
 			<label class="control-label">图片：</label>
 			<div class="controls">
 				<form:hidden id="path" path="path" htmlEscape="false" maxlength="255" class="input-xlarge"/>
-				<sys:ckfinder input="path" type="files" uploadPath="/base/baseIntroduce" selectMultiple="true"/>
+				<sys:ckfinder input="path" type="images" uploadPath="/base/baseIntroduce" selectMultiple="true"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">顺序：</label>
+			<div class="controls">
+				<form:input path="indexStr" htmlEscape="false" maxlength="24" class="input-xlarge "/>
 			</div>
 		</div>
 		

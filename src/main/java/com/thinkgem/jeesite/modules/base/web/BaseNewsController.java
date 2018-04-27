@@ -21,6 +21,7 @@ import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.base.entity.BaseNews;
 import com.thinkgem.jeesite.modules.base.service.BaseNewsService;
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 
 /**
  * 我的资讯Controller
@@ -67,6 +68,7 @@ public class BaseNewsController extends BaseController {
 		if (!beanValidator(model, baseNews)){
 			return form(baseNews, model);
 		}
+		baseNews.setUser(UserUtils.getUser());	
 		baseNewsService.save(baseNews);
 		addMessage(redirectAttributes, "保存我的资讯成功");
 		return "redirect:"+Global.getAdminPath()+"/base/baseNews/?repage";

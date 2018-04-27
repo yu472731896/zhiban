@@ -21,6 +21,7 @@ import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.base.entity.BaseTurnPicture;
 import com.thinkgem.jeesite.modules.base.service.BaseTurnPictureService;
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 
 /**
  * 轮播图Controller
@@ -67,6 +68,7 @@ public class BaseTurnPictureController extends BaseController {
 		if (!beanValidator(model, baseTurnPicture)){
 			return form(baseTurnPicture, model);
 		}
+		baseTurnPicture.setUser(UserUtils.getUser());
 		baseTurnPictureService.save(baseTurnPicture);
 		addMessage(redirectAttributes, "保存轮播图成功");
 		return "redirect:"+Global.getAdminPath()+"/base/baseTurnPicture/?repage";
