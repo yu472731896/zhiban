@@ -35,8 +35,53 @@
 			<p class="small_operation">
 				<a style="float: right;" href="user_register.html">已有账号，立即登录&gt;</a>
 			</p>
-			<button class="common_btn">登录</button>
+			<button class="common_btn gobuytime">登录</button>
 		</form>
+		<div class="choose_buytime_box">
+			<p style="margin-top: 5%;">正在申请制作一张个人名片</p><br />
+			<p>套餐类型</p>
+			<ul class="Gear_selection_box">
+				<li class="Gear_list active">
+					<span class="left">试用7天</span>
+					<span class="right">0元</span>
+				</li>
+				<li class="Gear_list">
+					<span class="left">1个月</span>
+					<span class="right">35元</span>
+				</li>
+				<li class="Gear_list">
+					<span class="left">3个月</span>
+					<span class="right">90元</span>
+				</li>
+				<li class="Gear_list">
+					<span class="left">6个月</span>
+					<span class="right">160元</span>
+				</li>
+				<li class="Gear_list">
+					<span class="left">12个月</span>
+					<span class="right">300元</span>
+				</li>
+			</ul>
+			<button class="common_btn confirm_pay">确认付款</button>
+			<p class="gear_goback" style="text-align: center;">
+				<span class="close_choose_buytime_box">返回注册</span>
+				&nbsp;|&nbsp;
+				<span onclick="window.location='index.html'">返回首页</span>
+			</p>
+		</div>
+		<script type="text/javascript">
+			$(".gobuytime").click(function(){
+				$(".choose_buytime_box").slideDown(200);
+			});
+			$(".close_choose_buytime_box").click(function(){
+				$(".choose_buytime_box").slideUp(0);
+			});
+			$(".Gear_list").click(function(){
+				$(".Gear_list").removeClass("active");
+				$(this).addClass("active");
+				console.log($(this).children(".right").html())
+			});
+		</script>
 
 	</body>
 

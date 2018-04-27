@@ -96,7 +96,16 @@ a {
 	border: 2px solid rgba(255, 255, 255, 0.6);
 	background: rgba(255, 255, 255, 0.47);
 }
-
+.feedback_textarea{
+	width: 100%;
+	border-radius: 6px;
+	padding: 0 6px;
+	font-size: 16px;
+	line-height: 1.8rem;
+	box-sizing: border-box;
+	border: 2px solid rgba(255, 255, 255, 0.6);
+	background: rgba(255, 255, 255, 0.47);
+}
 .small_operation {
 	font-size: 0.8em;
 	line-height: 1em;
@@ -107,11 +116,60 @@ a {
 	line-height: 4.0em;
 	background: none;
 }
-
-
+/*注册-购买*/
+.choose_buytime_box{
+	display: none;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 86%;
+	height: 100%;
+	background: rgba(255,255,255,0.94);
+	color: #4c4c4c;
+	padding: 0 7%;
+}
+.Gear_selection_box{
+}
+.Gear_list{
+	line-height: 44px;
+	border-bottom: 1px solid #ddd;
+	overflow: hidden;
+}
+.Gear_list.active{
+	background: url(../img/gear_choosed.png) center right no-repeat;
+	background-size: 22px;
+}
+.Gear_list .left{
+	float: left;
+}
+.Gear_list .right{
+	float: right;
+	color: #F23939;
+	font-weight: bold;
+	margin-right: 36px;
+}
+.confirm_pay{
+	position: absolute;
+	bottom: 24px;
+	width: 86%;
+	margin: 36px 0;
+}
+.gear_goback{
+	position: absolute;
+	bottom: 32px;
+	width: 86%;
+	text-align: center;
+}
 /*首页*/
+.box_indexcontent{
+	background: rgba(12, 12, 12, 0.2);
+	padding-bottom: 56px;
+}
 
 .top_nav {
+	position: fixed;
+	z-index: 3;
+	width: 100%;
 	color: #575757;
 	padding: 6px 12px;
 	background: #66baea;
@@ -121,6 +179,7 @@ a {
 .info {
 	position: relative;
 	text-align: center;
+	padding-top: 30px;
 }
 
 .info .head {
@@ -154,12 +213,12 @@ a {
 }
 .view{
 	position: absolute;
-	top: 45px;
-	left: 22%;
+    top: 98px;
+    right: 10%;
 }
 #music{
 	position: absolute;
-	top: 20px;
+	top: 36px;
 	right: 8%;
 }
 #music svg{
@@ -270,9 +329,9 @@ a {
 	text-align: center;
 }
 .footer .gohome{
-	margin-top: -20px;
-	width: 50px;
-	height: 50px;
+	margin-top: -10px;
+	width: 42px;
+	height: 42px;
 	background: #66baea;
 	border-radius: 50%;
 }
@@ -289,6 +348,7 @@ a {
 /*首页--微信名片*/
 
 .null_box {
+	display: none;
 	position: fixed;
 	z-index: 9;
 	top: 0;
@@ -310,6 +370,7 @@ a {
 }
 
 .wechat_box {
+	display: none;
 	background: url(../img/panel.jpg);
 	color: #4c4c4c;
 }
@@ -353,7 +414,39 @@ a {
 	margin-left: -20px;
 }
 
-
+/*首页-侧栏用户页面*/
+.sidebar_user{
+	position: fixed;
+	z-index: 99;
+	top: 0;
+	left: -100%;
+	width: 80%;
+	height: 100%;
+	background: #f2e2d5;
+	box-shadow: 3px 2px 2px rgba(102, 186, 234, 0.27);
+	color: #4c4c4c;
+}
+.sidebar_user_info{
+	text-align: center;
+	padding: 36px 0 76px;
+	background: url(../img/bg_index_02.jpg) no-repeat;
+	background-size: cover;
+}
+.sidebar_user_info .head{
+	width: 50px;
+}
+.slidebar_link{
+}
+.slidebar_link li{
+	line-height: 2.6rem;
+	padding-left: 20px;
+}
+.slidebar_link li .icon{
+	vertical-align: middle;
+}
+.slidebar_link_mt{
+	margin-top: 26px;
+}
 /*新闻列表页*/
 .Magazinelist_title{
 	position: relative;
