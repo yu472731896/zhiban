@@ -6,7 +6,7 @@
     "imageCompressEnable": true, 
     "imageCompressBorder": 1600, 
     "imageInsertAlign": "none", 
-    "imageUrlPrefix": "",
+    "imageUrlPrefix": "http://192.168.0.102:8081/zhiban",
     "imagePathFormat": "/ueditor/jsp/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}", 
     "scrawlActionName": "uploadscrawl", 
     "scrawlFieldName": "upfile",

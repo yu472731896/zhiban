@@ -10,6 +10,8 @@
 			$("#inputForm").validate({
 				submitHandler: function(form){
 					loading('正在提交，请稍等...');
+					var html = ue.getContent();
+					console.log("html2222--->"+html);
 					form.submit();
 				},
 				errorContainer: "#messageBox",
@@ -56,6 +58,7 @@
 	    <script type="text/javascript" src="${ctxStatic}/ueditor/ueditor.all.js"></script>
 	    <!-- 实例化编辑器 -->
 	    <script type="text/javascript">
+	    
 	        var ue = UE.getEditor('container');
 	      	//对编辑器的操作最好在编辑器ready之后再做
 	      	ue.ready(function() {
@@ -63,6 +66,8 @@
 	          	ue.setContent('hello');
 	          	//获取html内容，返回: <p>hello</p>
 	          	var html = ue.getContent();
+	          	console.log("html11--->"+html);
+	          	
 	          	//获取纯文本内容，返回: hello
 	          	var txt = ue.getContentTxt();
 	      	});
