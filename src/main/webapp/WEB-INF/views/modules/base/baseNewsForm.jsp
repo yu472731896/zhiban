@@ -63,19 +63,29 @@
 	      	//对编辑器的操作最好在编辑器ready之后再做
 	      	ue.ready(function() {
 	          	//设置编辑器的内容
-	          	ue.setContent('hello');
+	          	ue.setContent('${baseNews.content}', false);
 	          	//获取html内容，返回: <p>hello</p>
 	          	var html = ue.getContent();
-	          	console.log("html11--->"+html);
-	          	
 	          	//获取纯文本内容，返回: hello
 	          	var txt = ue.getContentTxt();
 	      	});
+	      	
+	      	ue.Editor.prototype._bkGetActionUrl = ue.Editor.prototype.getActionUrl;  
+	      	ue.Editor.prototype.getActionUrl = function(action){  
+	             if(action == '/f/core/saveFile'){  
+	                 return '${ctx}'+'/f/core/saveFile';  
+	             }else{  
+	                 return this._bkGetActionUrl.call(this, action);  
+	             }  
+	         }  
+	      	
 	    </script>
 		<div class="control-group">
 			<label class="control-label">内容：</label>
 			<div class="controls">
-				<form:textarea path="content" htmlEscape="false" rows="4" maxlength="3000" class="input-xxlarge "/>
+				<%-- <form:textarea path="content" htmlEscape="false" rows="4" maxlength="3000" class="input-xxlarge "/> --%>
+				${baseNews.content}
+				
 			</div>
 		</div>
 		

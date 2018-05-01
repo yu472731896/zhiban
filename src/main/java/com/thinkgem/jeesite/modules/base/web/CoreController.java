@@ -184,4 +184,13 @@ public class CoreController extends BaseController {
 		return loginFailNum >= 3;
 	}
 	
+	
+	/**
+	 * 图片上传方法
+	 */
+	@RequestMapping(value = "saveFile")
+	public void saveFile(HttpServletRequest request, HttpServletResponse response, Model model){
+		System.out.println("进行文件保存--->");
+	}
+	
 }
