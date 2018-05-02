@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
+import com.thinkgem.jeesite.common.utils.Encodes;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.base.entity.BaseNews;
 import com.thinkgem.jeesite.modules.base.service.BaseNewsService;
@@ -68,6 +69,11 @@ public class BaseNewsController extends BaseController {
 		if (!beanValidator(model, baseNews)){
 			return form(baseNews, model);
 		}
+		
+		if(StringUtils.isNoneBlank(baseNews.getContent())){
+			baseNews.setContent(Encodes.unescapeHtml(baseNews.getContent()));
+		}
+		
 		baseNews.setUser(UserUtils.getUser());	
 		baseNewsService.save(baseNews);
 		addMessage(redirectAttributes, "保存我的资讯成功");

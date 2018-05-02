@@ -11,8 +11,10 @@
 			$("#inputForm").validate({
 				submitHandler: function(form){
 					loading('正在提交，请稍等...');
-					var html = ue.getContent();
-					console.log("html2222--->"+html);
+					 var html = ue.getContent(); 
+					 
+					 console.log("html-->"+html);
+					 
 					form.submit();
 				},
 				errorContainer: "#messageBox",
@@ -49,9 +51,10 @@
 				<sys:ckfinder input="path" type="files" uploadPath="/base/baseNews" selectMultiple="true"/>
 			</div>
 		</div>
+		
 		<!-- 加载编辑器的容器 -->
 	    <script id="container" name="content" type="text/plain">
-        	请输入新闻内容
+        	
     	</script>
 	    <!-- 配置文件 -->
 	    <script type="text/javascript" src="${ctxStatic}/ueditor/ueditor.config.js"></script>
@@ -63,8 +66,12 @@
 	        var ue = UE.getEditor('container');
 	      	//对编辑器的操作最好在编辑器ready之后再做
 	      	ue.ready(function() {
+	      		
+	      		/* document.getElementById("mydiv").innerHTML = '${baseNews.content}'; */
 	          	//设置编辑器的内容
-	          	ue.setContent('${baseNews.content}', false);
+	       	  ue.setContent('${baseNews.content}',false);
+	          $("#mydiv").html('${baseNews.content}'); 
+	          
 	          	//获取html内容，返回: <p>hello</p>
 	          	var html = ue.getContent();
 	          	//获取纯文本内容，返回: hello
@@ -80,16 +87,15 @@
 		            return this._bkGetActionUrl.call(this, action);
 		        }
 		    };
-	      	
 	    </script>
-		<div class="control-group">
+	    
+	    
+		<%-- <div class="control-group">
 			<label class="control-label">内容：</label>
-			<div class="controls">
-				<%-- <form:textarea path="content" htmlEscape="false" rows="4" maxlength="3000" class="input-xxlarge "/> --%>
-				${baseNews.content}
-				
+			<div id="mydiv" class="controls">
+				<form:textarea path="content" htmlEscape="false" rows="4" maxlength="3000" class="input-xxlarge "/>
 			</div>
-		</div>
+		</div> --%>
 		
 		<div class="form-actions">
 			<shiro:hasPermission name="base:baseNews:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
