@@ -4,6 +4,7 @@
 <head>
 	<title>我的资讯管理</title>
 	<meta name="decorator" content="default"/>
+	<meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
 	<script type="text/javascript">
 		$(document).ready(function() {
 			//$("#name").focus();
@@ -70,14 +71,15 @@
 	          	var txt = ue.getContentTxt();
 	      	});
 	      	
-	      	ue.Editor.prototype._bkGetActionUrl = ue.Editor.prototype.getActionUrl;  
-	      	ue.Editor.prototype.getActionUrl = function(action){  
-	             if(action == '/f/core/saveFile'){  
-	                 return '${ctx}'+'/f/core/saveFile';  
-	             }else{  
-	                 return this._bkGetActionUrl.call(this, action);  
-	             }  
-	         }  
+	      	 //请求自己的接口上传文件
+		    UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+		    UE.Editor.prototype.getActionUrl = function (action) {
+		        if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadvideo') {
+		            return '${ctx}/ueditor/uploadFile';
+		        } else {
+		            return this._bkGetActionUrl.call(this, action);
+		        }
+		    };
 	      	
 	    </script>
 		<div class="control-group">
