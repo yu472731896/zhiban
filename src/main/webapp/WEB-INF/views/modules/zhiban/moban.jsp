@@ -140,8 +140,15 @@
 				<ul class="Magazine_lists">
 				
 				<!-- 循环遍历 -->
+				<c:forEach items="${page.newsList}" var="baseNews"></c:forEach>
 				
-					<li class="news_box">
+				<li class="news_box">
+						<p class="nwes_title">baseNews</p>
+						<img class="news_backcover" src="http://7xk5td.com1.z0.glb.clouddn.com/weixin_LTE4ODA2NTI3ODk=0.jpg-img200112" />
+					</li>
+				
+				
+					<!-- <li class="news_box">
 						<p class="nwes_title">1-14岁孩子成长密码，耶鲁大学跟踪研究40年的成果</p>
 						<img class="news_backcover" src="http://7xk5td.com1.z0.glb.clouddn.com/weixin_LTE4ODA2NTI3ODk=0.jpg-img200112" />
 					</li>
@@ -156,7 +163,7 @@
 					<li class="news_box">
 						<p class="nwes_title">1-14岁孩子成长密码，耶鲁大学跟踪研究40年的成果</p>
 						<img class="news_backcover" src="http://7xk5td.com1.z0.glb.clouddn.com/weixin_LTE4ODA2NTI3ODk=0.jpg-img200112" />
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</div>

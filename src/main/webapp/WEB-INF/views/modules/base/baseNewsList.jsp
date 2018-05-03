@@ -49,7 +49,7 @@
 			<tr>
 				<th>标题</th>
 				<th>图片</th>
-				<th>内容</th>
+				<!-- <th>内容</th> -->
 				<th>更新时间</th>
 				<!-- <th>用户主键</th> -->
 				<shiro:hasPermission name="base:baseNews:edit"><th>操作</th></shiro:hasPermission>
@@ -82,9 +82,9 @@
 			            </c:otherwise>
 	            	</c:choose> 
 				</td>
-				<td>
+				<%-- <td>
 					${baseNews.content}
-				</td>
+				</td> --%>
 				<td>
 					<fmt:formatDate value="${baseNews.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>

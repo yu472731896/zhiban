@@ -11,10 +11,10 @@
 			$("#inputForm").validate({
 				submitHandler: function(form){
 					loading('正在提交，请稍等...');
-					 var html = ue.getContent(); 
-					 
-					 console.log("html-->"+html);
-					 
+					
+					var html = ue.getContent();
+					console.log("html-->"+html);
+					
 					form.submit();
 				},
 				errorContainer: "#messageBox",
@@ -53,7 +53,7 @@
 		</div>
 		
 		<!-- 加载编辑器的容器 -->
-	    <script id="container" name="content" type="text/plain">
+	    <script id="container" name="content"  style="width:100%;height:350px;" type="text/plain">
         	
     	</script>
 	    <!-- 配置文件 -->
@@ -69,9 +69,8 @@
 	      		
 	      		/* document.getElementById("mydiv").innerHTML = '${baseNews.content}'; */
 	          	//设置编辑器的内容
-	       	  ue.setContent('${baseNews.content}',false);
-	          $("#mydiv").html('${baseNews.content}'); 
-	          
+	       	 /*  ue.setContent(${baseNews.content},false); */
+	           ue.setContent('${baseNews.content}');
 	          	//获取html内容，返回: <p>hello</p>
 	          	var html = ue.getContent();
 	          	//获取纯文本内容，返回: hello
