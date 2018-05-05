@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
-
 	<head>
 		<meta charset="UTF-8">
 		<title>智能陪伴，快乐成长</title>
@@ -12,16 +12,8 @@
 		<meta http-equiv="Pragma" content="no-cache" />
 		<meta http-equiv="Expires" content="0" />
 		<!--微信不缓存东西  end-->
-		<link rel="stylesheet" type="text/css" href="css/reset.css" />
-		<link rel="stylesheet" href="css/swiper3.07.min.css">
-		<link rel="stylesheet" href="css/animate.min.css">
-		<link rel="stylesheet" href="css/demo.css" />
-
-		<script src="js/swiper.min.js"></script>
-		<script src="js/swiper.animate.min.js"></script>
-		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
-
-		<script src="iconfont/iconfont.js"></script>
+		<%@include file="/WEB-INF/views/include/head.jsp" %>
+		<%@include file="/WEB-INF/views/include/zhibanHead.jsp" %>
 	</head>
 
 	<body>

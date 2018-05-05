@@ -70,7 +70,6 @@
 			            <c:otherwise>
 			                  <input type=button value="预览" onclick="open_win('${baseNews.path}')" />
 			                  <script>
-				                  
 				                  function open_win(patch){
 				                	  while(patch.indexOf("|")!=-1){
 				                		  patch = patch.replace("|","~");

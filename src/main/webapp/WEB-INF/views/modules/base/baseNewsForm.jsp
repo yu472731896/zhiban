@@ -48,7 +48,7 @@
 			<label class="control-label">图片路径：</label>
 			<div class="controls">
 				<form:hidden id="path" path="path" htmlEscape="false" maxlength="255" class="input-xlarge"/>
-				<sys:ckfinder input="path" type="files" uploadPath="/base/baseNews" selectMultiple="true"/>
+				<sys:ckfinder input="path" type="files" uploadPath="/base/baseNews" selectMultiple="false"/>
 			</div>
 		</div>
 		

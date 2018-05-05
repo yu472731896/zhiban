@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.google.common.collect.Maps;
 import com.thinkgem.jeesite.common.config.Global;
+import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.security.shiro.session.SessionDAO;
 import com.thinkgem.jeesite.common.utils.CacheUtils;
 import com.thinkgem.jeesite.common.utils.StringUtils;
@@ -69,7 +70,7 @@ public class CoreController extends BaseController {
 		List<BaseUserInfo> userInfoList= baseUserInfoService.findList(newUserInfo);
 		//获取新闻列表
 		BaseNews baseNews = new BaseNews();
-		List<BaseNews> newsList = baseNewsService.findList(baseNews);
+		Page<BaseNews> newsPageList = baseNewsService.findPage(new Page<BaseNews>(0, 5), baseNews);
 		
 		BaseUserInfo userInfo = userInfoList.get(0);
 		
@@ -84,14 +85,21 @@ public class CoreController extends BaseController {
 			String musicFile = userInfo.getMusicFile();
 			userInfo.setMusicFile(musicFile.replace("|", "")); 
 		}
-		
 		model.addAttribute("userInfo", userInfo);
-		model.addAttribute("newsList", newsList);
+		model.addAttribute("newsList", newsPageList.getList());
 		
 		return "modules/zhiban/moban";
 	}
 	
-	
+	/**
+	 *新闻详细 
+	 */
+	@RequestMapping(value = "mobileform")
+	public String mobileform(BaseNews baseNews, Model model) {
+		baseNews = baseNewsService.get(baseNews);
+		model.addAttribute("baseNews", baseNews);
+		return "modules/zhiban/Magazine_detail";
+	}
 	
 	//登陆跳转页面
 	@RequestMapping(value = "login")
