@@ -11,9 +11,9 @@
 		<meta http-equiv="Pragma" content="no-cache" />
 		<meta http-equiv="Expires" content="0" />
 		<!--微信不缓存东西  end-->
+		<script src="//at.alicdn.com/t/font_583524_zxq3knl7iwv78pvi.js"></script>
 		<%@include file="/WEB-INF/views/include/head.jsp" %>
 		<%@include file="/WEB-INF/views/include/zhibanHead.jsp" %>
-		<script src="//at.alicdn.com/t/font_583524_zxq3knl7iwv78pvi.js"></script>
 	</head>
 
 	<body class="bg_index">
@@ -138,10 +138,18 @@
 				<!--<div class="Magazine_type">
 				</div>-->
 				<ul class="Magazine_lists">
-				
 				<!-- 循环遍历 -->
-				
+				<c:forEach items="${newsList}" var="baseNews">
 					<li class="news_box">
+						<a href="${fctx}/core/mobileform?id=${baseNews.id}">
+							<p class="nwes_title">${baseNews.title}</p></a>
+						<img class="news_backcover" src="<c:out value="${baseNews.path}"/>"/>
+						<%-- <img class="news_backcover" src="<c:out value="${fn:replace('${baseNews.path}', '|','')}"/>"/> --%>
+					</li>
+				</c:forEach>
+					
+					<p style="text-align:center;"><a href=""></a>查看全部</p>
+					<!-- <li class="news_box">
 						<p class="nwes_title">1-14岁孩子成长密码，耶鲁大学跟踪研究40年的成果</p>
 						<img class="news_backcover" src="http://7xk5td.com1.z0.glb.clouddn.com/weixin_LTE4ODA2NTI3ODk=0.jpg-img200112" />
 					</li>
@@ -156,7 +164,7 @@
 					<li class="news_box">
 						<p class="nwes_title">1-14岁孩子成长密码，耶鲁大学跟踪研究40年的成果</p>
 						<img class="news_backcover" src="http://7xk5td.com1.z0.glb.clouddn.com/weixin_LTE4ODA2NTI3ODk=0.jpg-img200112" />
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</div>
@@ -176,7 +184,7 @@
 		</div>
 		<!--音乐-->
 		<audio class="audio" autoplay="autoplay">
-			<source src="${userInfo.musicFile}" type="audio/mp3" media="">
+			<source src="${userInfo.musicFile }" type="audio/mp3" media="">
 		</audio>
 		
 		<!--微信名片-->
