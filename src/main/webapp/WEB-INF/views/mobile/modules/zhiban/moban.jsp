@@ -148,7 +148,7 @@
 					</li>
 				</c:forEach>
 					
-					<p style="text-align:center;"><a href=""></a>查看全部</p>
+					<p style="text-align:center;"><a href="${fctx}/core/userNewsList">查看全部</a></p>
 					<!-- <li class="news_box">
 						<p class="nwes_title">1-14岁孩子成长密码，耶鲁大学跟踪研究40年的成果</p>
 						<img class="news_backcover" src="http://7xk5td.com1.z0.glb.clouddn.com/weixin_LTE4ODA2NTI3ODk=0.jpg-img200112" />

@@ -14,19 +14,37 @@
 		<!--微信不缓存东西  end-->
 		<%@include file="/WEB-INF/views/include/head.jsp" %>
 		<%@include file="/WEB-INF/views/include/zhibanHead.jsp" %>
+		<script type="text/javascript">
+		function page(n,s){
+			$("#pageNo").val(n);
+			$("#pageSize").val(s);
+			$("#searchForm").submit();
+        	return false;
+        }
+		</script>
 	</head>
-
 	<body>
+		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
+		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<!--资讯-->
 		<div class="Magazine Magazine_bg_white">
 			<div class="Magazinelist_title">
-				<img class="bg_Magazinelist_title" src="img/bg_index_01.jpg"/>
+				<img class="bg_Magazinelist_title" src="${ctxStatic}/zhiban/img/bg_index_01.jpg"/>
 				<p class="Magazinelist_title_text">智伴介绍</p>
 			</div>
 			<!--<div class="Magazine_type">
 				</div>-->
 			<ul class="Magazine_lists">
-				<li class="news_box">
+				<c:forEach items="${page.list}" var="baseNews">
+					<li class="news_box">
+						<a href="${fctx}/core/mobileform?id=${baseNews.id}">
+							<p class="nwes_title">${baseNews.title}</p></a>
+						<img class="news_backcover" src="<c:out value="${baseNews.path}"/>"/>
+						<%-- <img class="news_backcover" src="<c:out value="${fn:replace('${baseNews.path}', '|','')}"/>"/> --%>
+					</li>
+				</c:forEach>
+			
+				<!-- <li class="news_box">
 					<p class="nwes_title">1-14岁孩子成长密码，耶鲁大学跟踪研究40年的成果</p>
 					<img class="news_backcover" src="http://7xk5td.com1.z0.glb.clouddn.com/weixin_LTE4ODA2NTI3ODk=0.jpg-img200112" />
 				</li>
@@ -41,9 +59,10 @@
 				<li class="news_box">
 					<p class="nwes_title">1-14岁孩子成长密码，耶鲁大学跟踪研究40年的成果</p>
 					<img class="news_backcover" src="http://7xk5td.com1.z0.glb.clouddn.com/weixin_LTE4ODA2NTI3ODk=0.jpg-img200112" />
-				</li>
+				</li> -->
 			</ul>
-			<div class="loadData">没有更多了</div>
+			<div class="pagination">${page}</div>
+<!-- <div class="loadData">没有更多了</div> -->
 		</div>
 	</body>
 

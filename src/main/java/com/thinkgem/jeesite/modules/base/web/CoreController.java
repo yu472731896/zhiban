@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.common.collect.Maps;
 import com.thinkgem.jeesite.common.config.Global;
@@ -99,6 +100,21 @@ public class CoreController extends BaseController {
 		baseNews = baseNewsService.get(baseNews);
 		model.addAttribute("baseNews", baseNews);
 		return "modules/zhiban/Magazine_detail";
+	}
+	/**
+	 *新闻列表 
+	 */
+	@RequestMapping(value = "userNewsList")
+	public String userNewsList(BaseNews baseNews,HttpServletRequest request, HttpServletResponse response, Model model){
+		
+		User curruser = UserUtils.getUser();
+		if(null != curruser && StringUtils.isNoneBlank(curruser.getId())) {
+			baseNews.setUser(curruser);
+		}
+		
+		Page<BaseNews> NewsPage= baseNewsService.findPage(new Page<BaseNews>(request, response), baseNews);
+		model.addAttribute("page", NewsPage);
+		return "modules/zhiban/Magazine_list";
 	}
 	
 	//登陆跳转页面
