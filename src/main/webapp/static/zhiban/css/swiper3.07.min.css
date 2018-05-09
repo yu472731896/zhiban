@@ -491,7 +491,7 @@
 #slide .pagination {
 	position: absolute;
 	z-index: 9;
-	bottom: 12px;
+	bottom: -12px;
 	right: 0;
 	height: 14px;
 	padding: 8px;

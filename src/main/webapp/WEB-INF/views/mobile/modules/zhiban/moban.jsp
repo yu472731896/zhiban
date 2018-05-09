@@ -149,8 +149,7 @@
 						<%-- <img class="news_backcover" src="<c:out value="${fn:replace('${baseNews.path}', '|','')}"/>"/> --%>
 					</li>
 				</c:forEach>
-					
-					<p style="text-align:center;"><a href="${fctx}/core/userNewsList">查看全部</a></p>
+				<p style="text-align:center;margin-top: 6px;"><a href="${fctx}/core/userNewsList" style="color:#fff">查看全部</a></p>
 					 
 				</ul>
 			</div>
@@ -204,14 +203,15 @@
 				</li>
 			</ul>
 			<div class="sidebar_user_null"></div>
+		</div>
 		
 		<!--底部-->
 		<div class="footer">
 			<svg class="icon goleft" aria-hidden="true">
 				<use xlink:href="#icon-left"></use>
 			</svg>
-			<svg class="icon gohome" aria-hidden="true">
-				<use xlink:href="#icon-shouye"></use>
+			<svg class="icon gomenu" aria-hidden="true">
+				<use xlink:href="#icon-mulu"></use>
 			</svg>
 			<svg class="icon goshare" aria-hidden="true">
 				<use xlink:href="#icon-fenxiang"></use>
@@ -244,6 +244,11 @@
 					visibilityFullFit: true,
 					loop: true,
 					pagination: '.pagination',
+					onSlideChangeStart: function() {
+						var h = $(".swiper-slide-active").children().height() * $(".swiper-slide-active").children().length;
+						$(".swiper-wrapper").css("height", h);
+						$(".swiper-slide").css('height', h);
+					}
 				});
 				$(".wechat_box,.null_box").hide();
 
@@ -284,7 +289,7 @@
 			};
 			
 			//侧栏
-			$(".top_nav").click(function() {
+			$(".top_nav,.gomenu").click(function() {
 				$(".null_box").fadeIn(300);
 				$(".sidebar_user").animate({
 					left: "+=100%"
@@ -302,11 +307,9 @@
 			//左右滑
 			var windowHeight = $(window).height(),
 			 	windowwidth = $(window).width(),
-			$body = $("body");　
-			　
+			$body = $("body");
 			$body.css("height", windowHeight);
-			$body.css("width", windowwidth);
-			　
+			$body.css("width", windowwidth);　
 			$("body").on("touchstart", function(e) {　　　　
 				e.preventDefault();　　　　
 				startX = e.originalEvent.changedTouches[0].pageX, 　　　　startY = e.originalEvent.changedTouches[0].pageY;　　

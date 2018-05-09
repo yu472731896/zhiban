@@ -1,4 +1,4 @@
-ï»¿* {
+* {
 	margin: 0;
 	padding: 0;
 }
@@ -21,7 +21,7 @@ a {
 }
 
 
-/*å­—ä½“å›¾æ ‡*/
+/*×ÖÌåÍ¼±ê*/
 
 .icon {
 	width: 1.6em;
@@ -55,7 +55,7 @@ a {
 }
 
 
-/*èƒŒæ™¯*/
+/*±³¾°*/
 
 .bg_index,
 .bg_login {
@@ -67,7 +67,7 @@ a {
 }
 
 
-/*ç™»å½•*/
+/*µÇÂ¼*/
 
 .user_login_box {
 	width: 400px;
@@ -116,7 +116,7 @@ a {
 	line-height: 4.0em;
 	background: none;
 }
-/*æ³¨å†Œ-è´­ä¹°*/
+/*×¢²á-¹ºÂò*/
 .choose_buytime_box{
 	display: none;
 	position: fixed;
@@ -160,7 +160,7 @@ a {
 	width: 86%;
 	text-align: center;
 }
-/*é¦–é¡µ*/
+/*Ê×Ò³*/
 .box_indexcontent{
 	background: rgba(12, 12, 12, 0.2);
 	padding-bottom: 56px;
@@ -188,7 +188,9 @@ a {
 	border-radius: 50%;
 	box-shadow: 0 0 15px #fff;
 }
-
+.banner_box{
+	min-height: 200px;
+}
 .contact_info {
 	text-align: left;
 	padding-bottom: 30px;
@@ -264,7 +266,7 @@ a {
 }
 
 
-/*é¦–é¡µ--å…³äºæ™ºä¼´*/
+/*Ê×Ò³--¹ØÓÚÖÇ°é*/
 
 .friendly_link_box {
 	overflow: hidden;
@@ -295,7 +297,7 @@ a {
 }
 
 
-/*é¦–é¡µ--æˆ‘çš„èµ„è®¯*/
+/*Ê×Ò³--ÎÒµÄ×ÊÑ¶*/
 
 .Magazine {}
 
@@ -310,14 +312,16 @@ a {
 .nwes_title {
 	width: 70%;
 	float: left;
+	color: #fff;
 }
 
 .news_backcover {
 	width: 30%;
+	max-height:112px;
 	float: right;
 }
 
-/*é¦–é¡µ--åº•éƒ¨*/
+/*Ê×Ò³--µ×²¿*/
 .footer{
 	position: fixed;
 	z-index: 3;
@@ -328,10 +332,11 @@ a {
 	background: #676869;
 	text-align: center;
 }
-.footer .gohome{
+.footer .gomenu{
 	margin-top: -10px;
-	width: 42px;
-	height: 42px;
+	width: 30px;
+	height: 30px;
+	padding:8px;
 	background: #66baea;
 	border-radius: 50%;
 }
@@ -345,7 +350,7 @@ a {
 	right: 12px;
 	top: 4px;
 }
-/*é¦–é¡µ--å¾®ä¿¡åç‰‡*/
+/*Ê×Ò³--Î¢ĞÅÃûÆ¬*/
 
 .null_box {
 	display: none;
@@ -414,7 +419,7 @@ a {
 	margin-left: -20px;
 }
 
-/*é¦–é¡µ-ä¾§æ ç”¨æˆ·é¡µé¢*/
+/*Ê×Ò³-²àÀ¸ÓÃ»§Ò³Ãæ*/
 .sidebar_user{
 	position: fixed;
 	z-index: 99;
@@ -447,12 +452,13 @@ a {
 .slidebar_link_mt{
 	margin-top: 26px;
 }
-/*æ–°é—»åˆ—è¡¨é¡µ*/
+/*ĞÂÎÅÁĞ±íÒ³*/
 .Magazinelist_title{
 	position: relative;
 }
 .bg_Magazinelist_title{
 	width: 100%;
+	max-height: 300px;
 }
 .Magazinelist_title_text{
 	position: absolute;
@@ -470,7 +476,7 @@ a {
 .Magazine_bg_white .news_box{
 	border-color: #a9a9a9;
 }
-/*èµ„è®¯è¯¦æƒ…*/
+/*×ÊÑ¶ÏêÇé*/
 .information_title{
 	font-size: 1.2em;
 	color: #0d0d0d;
