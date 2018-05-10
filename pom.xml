@@ -8,13 +8,19 @@
 	<version>0.0.1</version>
 	<packaging>war</packaging>
 	
-	<name>JeeSite</name>
-	<url>http://thinkgem.github.com/jeesite</url>
-	<inceptionYear>2012-2016</inceptionYear>
+	<name>ZhiBan</name>
+	<url>https://github.com/yu472731896/zhiban.git</url>
+	<inceptionYear>2018</inceptionYear>
+	
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
 	
 	<!-- 项目属性 -->
 	<properties>
-		
 		<!-- main version setting -->
 		<spring.version>4.1.9.RELEASE</spring.version>
 		<validator.version>5.2.4.Final</validator.version>
@@ -661,6 +667,12 @@
             <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ueditor-1.1.2.jar</systemPath>  
          </dependency>  
 		
+		<!-- QRCode generator for JAVA -->
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>3.3.0</version>
+		</dependency>
 		
 	</dependencies>
 
