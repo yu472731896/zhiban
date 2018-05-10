@@ -27,8 +27,8 @@
 			</div>
 			<!--个人信息-->
 			<div class="info">
-				<img class="head" src="${ctxStatic}/zhiban/img/head_default.png" />
-				<p>郝斌</p>
+				<img class="head" src="${ctxStatic}/zhiban/img/head_default.png" />	${fns:getUser().photo}
+				<p>${fns:getUser().name}</p>
 				<p>${userInfo.entName}<br /> ${userInfo.position}</p>
 				<p>${userInfo.titleInfo}</p>
 
@@ -158,12 +158,20 @@
 		<!--侧栏用户页面--左滑显示-->
 		<div class="sidebar_user">
 			<div class="sidebar_user_info">
-				<!--未登录-->
-				<img class="head" src="${ctxStatic}/zhiban/img/head_default.png" />
-				<p onclick="window.location='user_login.html'">登录</p>
-				<!--登录-->
-				<img class="head" src="${ctxStatic}/zhiban/img/head_default.png"/>
-				<p>郝斌</p>
+			
+			<c:choose>
+				<c:when test="${fns:getUser()}==''">
+					<!--未登录-->
+					<img class="head" src="${ctxStatic}/zhiban/img/head_default.png" />
+					<p onclick="window.location='user_login.html'">登录</p>
+				</c:when>
+				<c:otherwise>
+					<!--登录-->
+					<img class="head" src="${fns:getUser().photo}"/>
+					<p>${fns:getUser().name}</p>
+				</c:otherwise>
+			</c:choose>
+			
 			</div>
 			<ul class="slidebar_link">
 				<li class="slidebar_link_mt" onclick="window.location='user_register.html'">

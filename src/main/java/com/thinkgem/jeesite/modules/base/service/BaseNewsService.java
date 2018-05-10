@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.service.CrudService;
+import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.base.entity.BaseNews;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
@@ -29,6 +30,10 @@ public class BaseNewsService extends CrudService<BaseNewsDao, BaseNews> {
 	}
 	
 	public List<BaseNews> findList(BaseNews baseNews) {
+		User currUser = new User();
+		if(null != currUser && StringUtils.isNoneBlank(currUser.getId())){
+			baseNews.setUser(currUser);
+		}
 		return super.findList(baseNews);
 	}
 	

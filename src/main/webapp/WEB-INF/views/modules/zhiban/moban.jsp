@@ -11,28 +11,32 @@
 		<meta http-equiv="Pragma" content="no-cache" />
 		<meta http-equiv="Expires" content="0" />
 		<!--微信不缓存东西  end-->
-		<script src="//at.alicdn.com/t/font_583524_zxq3knl7iwv78pvi.js"></script>
 		<%@include file="/WEB-INF/views/include/head.jsp" %>
 		<%@include file="/WEB-INF/views/include/zhibanHead.jsp" %>
 	</head>
 
 	<body class="bg_index">
-		<div style="background: rgba(12, 12, 12, 0.2);padding-bottom: 56px;">
+		<div class="box_indexcontent">
 			<!--公司-->
 			<div class="top_nav">
 				<svg class="icon" aria-hidden="true">
 					<use xlink:href="#icon-mulu"></use>
 				</svg>
 				<span>${userInfo.entName}</span>
-			
 			</div>
 			<!--个人信息-->
 			<div class="info">
-				<img class="head" src="${ctxStatic}/zhiban/img/head_default.png" />
-				<p>郝斌</p>
+				<c:choose>
+					<c:when test="${user.photo} == ''">
+						<img class="head" src="${ctxStatic}/zhiban/img/head_default.png" />
+					</c:when>
+					<c:otherwise>
+						<img class="head" src="${user.photo}"/>	
+					</c:otherwise>
+				</c:choose>
+				<p>${user.name}</p>
 				<p>${userInfo.entName}<br /> ${userInfo.position}</p>
 				<p>${userInfo.titleInfo}</p>
-
 				<div class="contact_info">
 					<a class="contact_type" href="tel:13203509288">
 						<svg class="icon" aria-hidden="true">
@@ -48,6 +52,9 @@
 						<button class="btn_add_wechat">加微信</button>
 					</div>
 				</div>
+				
+				<a href="${ctx}/f/core/login" >登陆我的名片</a>
+				
 				<!--浏览量-->
 				<div class="view">
 					<svg class="icon" aria-hidden="true">
@@ -91,7 +98,6 @@
 				</p>
 				
 				<!-- 循环遍历 -->
-
 				<div class="friendly_link" onclick="window.location='http://jinghua.shequnpay.com/ChatRoomMsgUserNewNew.aspx?nRecID=2452737'">
 					<svg class="icon friendlylink_icon" aria-hidden="true" style="background: #f9c10c;">
 						<use xlink:href="#icon-jieshao"></use>
@@ -147,26 +153,68 @@
 						<%-- <img class="news_backcover" src="<c:out value="${fn:replace('${baseNews.path}', '|','')}"/>"/> --%>
 					</li>
 				</c:forEach>
-					
-					<p style="text-align:center;"><a href="${fctx}/core/userNewsList">查看全部</a></p>
-					<!-- <li class="news_box">
-						<p class="nwes_title">1-14岁孩子成长密码，耶鲁大学跟踪研究40年的成果</p>
-						<img class="news_backcover" src="http://7xk5td.com1.z0.glb.clouddn.com/weixin_LTE4ODA2NTI3ODk=0.jpg-img200112" />
-					</li>
-					<li class="news_box">
-						<p class="nwes_title">1-14岁孩子成长密码，耶鲁大学跟踪研究40年的成果</p>
-						<img class="news_backcover" src="http://7xk5td.com1.z0.glb.clouddn.com/weixin_LTE4ODA2NTI3ODk=0.jpg-img200112" />
-					</li>
-					<li class="news_box">
-						<p class="nwes_title">1-14岁孩子成长密码，耶鲁大学跟踪研究40年的成果</p>
-						<img class="news_backcover" src="http://7xk5td.com1.z0.glb.clouddn.com/weixin_LTE4ODA2NTI3ODk=0.jpg-img200112" />
-					</li>
-					<li class="news_box">
-						<p class="nwes_title">1-14岁孩子成长密码，耶鲁大学跟踪研究40年的成果</p>
-						<img class="news_backcover" src="http://7xk5td.com1.z0.glb.clouddn.com/weixin_LTE4ODA2NTI3ODk=0.jpg-img200112" />
-					</li> -->
+				<p style="text-align:center;margin-top: 6px;"><a href="${fctx}/core/userNewsList" style="color:#fff">查看全部</a></p>
+					 
 				</ul>
 			</div>
+		</div>
+		
+		<!--侧栏用户页面--左滑显示-->
+		<div class="sidebar_user">
+			<div class="sidebar_user_info">
+			
+			<c:choose>
+				<c:when test="${fns:getUser().id} == ''">
+					<!--未登录-->
+					<img class="head" src="${ctxStatic}/zhiban/img/head_default.png" />
+					<p onclick="window.location='user_login.html'">登录</p>
+				</c:when>
+				<c:otherwise>
+						<!--登录-->
+						<img class="head" src="${fns:getUser().photo}"/>
+						<p>${fns:getUser().name}</p>
+				</c:otherwise>
+			</c:choose>
+			
+			</div>
+			<ul class="slidebar_link">
+				<li class="slidebar_link_mt" onclick="window.location='user_register.html'">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-zhizuo"></use>
+					</svg>
+					<span>我要制作名片</span>
+				</li>
+				<li class="slidebar_link_mt" onclick="window.location='index.html'">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-chengyuanyingyonchakanqi"></use>
+					</svg>
+					<span>查看我的名片</span>
+				</li>
+				<li class="slidebar_link_mt" onclick="window.location='Magazine_list.html'">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-yijin04-guanyuwomen"></use>
+					</svg>
+					<span>关于智伴</span>
+				</li>
+				<li onclick="window.location='Magazine_list.html'">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-zixun"></use>
+					</svg>
+					<span>查看全部资讯</span></li>
+				<li class="slidebar_link_mt" onclick="window.location='feedback.html'">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-yijianfankui"></use>
+					</svg>
+					<span>反馈建议</span>
+				</li>
+				<li>
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-fenxiang2"></use>
+					</svg>
+					<span>分享给好友</span>
+				</li>
+			</ul>
+			<div class="sidebar_user_null"></div>
 		</div>
 		
 		<!--底部-->
@@ -174,8 +222,8 @@
 			<svg class="icon goleft" aria-hidden="true">
 				<use xlink:href="#icon-left"></use>
 			</svg>
-			<svg class="icon gohome" aria-hidden="true">
-				<use xlink:href="#icon-shouye"></use>
+			<svg class="icon gomenu" aria-hidden="true">
+				<use xlink:href="#icon-mulu"></use>
 			</svg>
 			<svg class="icon goshare" aria-hidden="true">
 				<use xlink:href="#icon-fenxiang"></use>
@@ -208,6 +256,11 @@
 					visibilityFullFit: true,
 					loop: true,
 					pagination: '.pagination',
+					onSlideChangeStart: function() {
+						var h = $(".swiper-slide-active").children().height() * $(".swiper-slide-active").children().length;
+						$(".swiper-wrapper").css("height", h);
+						$(".swiper-slide").css('height', h);
+					}
 				});
 				$(".wechat_box,.null_box").hide();
 
@@ -246,7 +299,64 @@
 
 				};
 			};
+			
+			//侧栏
+			$(".top_nav,.gomenu").click(function() {
+				$(".null_box").fadeIn(300);
+				$(".sidebar_user").animate({
+					left: "+=100%"
+				}, 600);
+			});
+			$(".null_box").click(function() {
+				if($(".sidebar_user").css("left") == "0px") {
+					$(".sidebar_user").animate({
+						left: "-=100%"
+					}, 600);
+				}
+				$(".null_box,.wechat_box").fadeOut(300);
+			});
+			
+			//左右滑
+			var windowHeight = $(window).height(),
+			 	windowwidth = $(window).width(),
+			$body = $("body");
+			$body.css("height", windowHeight);
+			$body.css("width", windowwidth);　
+			$("body").on("touchstart", function(e) {　　　　
+				e.preventDefault();　　　　
+				startX = e.originalEvent.changedTouches[0].pageX, 　　　　startY = e.originalEvent.changedTouches[0].pageY;　　
+			});　　
+			$("body").on("touchmove", function(e) {　　　　
+				e.preventDefault();　　　　
+				moveEndX = e.originalEvent.changedTouches[0].pageX, 　　　　moveEndY = e.originalEvent.changedTouches[0].pageY, 　　　　X = moveEndX - startX, 　　　　Y = moveEndY - startY;
+				if(Math.abs(X) > Math.abs(Y) && X > 0) {　
+					//left-right
+					if($(".sidebar_user").css("left") == -windowwidth+"px") {
+						$(".sidebar_user").stop().animate({
+							left: "+=100%"
+						}, 600);
+					}　　　　　
+					$(".null_box").fadeIn(300);
+				}　　　　
+				else if(Math.abs(X) > Math.abs(Y) && X < 0) {
+					//right-left
+					if($(".sidebar_user").css("left") == "0px") {
+						$(".sidebar_user").stop().animate({
+							left: "-=100%"
+						}, 600);
+					}
+					$(".null_box").fadeOut(300);　　
+				}　　　　
+				else if(Math.abs(Y) > Math.abs(X) && Y > 0) {　　　　　　
+					//top-bottom　　　　
+				}　　　　
+				else if(Math.abs(Y) > Math.abs(X) && Y < 0) {　　　　　　
+					//bottom-top　　　　
+				}　　　　
+				else {　　　　　　
+					//just touch　　　　
+				}　　
+			});
 		</script>
 	</body>
-
 </html>

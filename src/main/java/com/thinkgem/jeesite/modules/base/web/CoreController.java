@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.common.collect.Maps;
 import com.thinkgem.jeesite.common.config.Global;
@@ -67,6 +66,9 @@ public class CoreController extends BaseController {
 	public String list(@PathVariable("userId") String userId , HttpServletRequest request, HttpServletResponse response, Model model) {
 		
 		//获取用户信息
+		User user = UserUtils.get(userId);
+		
+		//获取用户基础信息
 		BaseUserInfo newUserInfo = new BaseUserInfo();
 		List<BaseUserInfo> userInfoList= baseUserInfoService.findList(newUserInfo);
 		//获取新闻列表
@@ -86,6 +88,8 @@ public class CoreController extends BaseController {
 			String musicFile = userInfo.getMusicFile();
 			userInfo.setMusicFile(musicFile.replace("|", "")); 
 		}
+		
+		model.addAttribute("user", user);
 		model.addAttribute("userInfo", userInfo);
 		model.addAttribute("newsList", newsPageList.getList());
 		

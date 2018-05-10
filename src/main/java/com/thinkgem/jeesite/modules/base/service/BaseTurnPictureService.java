@@ -10,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.service.CrudService;
+import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.base.entity.BaseTurnPicture;
+import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.base.dao.BaseTurnPictureDao;
 
 /**
@@ -27,6 +29,10 @@ public class BaseTurnPictureService extends CrudService<BaseTurnPictureDao, Base
 	}
 	
 	public List<BaseTurnPicture> findList(BaseTurnPicture baseTurnPicture) {
+		User currUser = new User();
+		if(null != currUser && StringUtils.isNoneBlank(currUser.getId())){
+			baseTurnPicture.setUser(currUser);
+		}
 		return super.findList(baseTurnPicture);
 	}
 	
