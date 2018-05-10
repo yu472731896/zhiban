@@ -23,17 +23,23 @@
 					<use xlink:href="#icon-mulu"></use>
 				</svg>
 				<span>${userInfo.entName}</span>
-			
 			</div>
+			
 			<!--个人信息-->
 			<div class="info">
-				<img class="head" src="${ctxStatic}/zhiban/img/head_default.png" />	${fns:getUser().photo}
-				<p>${fns:getUser().name}</p>
+				<c:choose>
+					<c:when test="${user.photo} == ''">
+						<img class="head" src="${ctxStatic}/zhiban/img/head_default.png" />
+					</c:when>
+					<c:otherwise>
+						<img class="head" src="${user.photo}"/>	
+					</c:otherwise>
+				</c:choose>
+				<p>${user.name}</p>
 				<p>${userInfo.entName}<br /> ${userInfo.position}</p>
 				<p>${userInfo.titleInfo}</p>
-
 				<div class="contact_info">
-					<a class="contact_type" href="tel:13203509288">
+					<a class="contact_type" href="tel:${userInfo.phone}">
 						<svg class="icon" aria-hidden="true">
 							<use xlink:href="#icon-dianhua"></use>
 						</svg>
@@ -44,11 +50,9 @@
 							<use xlink:href="#icon-weixin"></use>
 						</svg>
 						&nbsp;${userInfo.weixin}
-						<button class="btn_add_wechat">加微信</button>
+						<button class="btn_add_wechat">加微信 </button>
 					</div>
 				</div>
-				
-				<a href="${ctx}/f/core/login" >登陆我的名片</a>
 				
 				<!--浏览量-->
 				<div class="view">
@@ -93,7 +97,6 @@
 				</p>
 				
 				<!-- 循环遍历 -->
-
 				<div class="friendly_link" onclick="window.location='http://jinghua.shequnpay.com/ChatRoomMsgUserNewNew.aspx?nRecID=2452737'">
 					<svg class="icon friendlylink_icon" aria-hidden="true" style="background: #f9c10c;">
 						<use xlink:href="#icon-jieshao"></use>
@@ -149,26 +152,26 @@
 						<%-- <img class="news_backcover" src="<c:out value="${fn:replace('${baseNews.path}', '|','')}"/>"/> --%>
 					</li>
 				</c:forEach>
-				<p style="text-align:center;margin-top: 6px;"><a href="${fctx}/core/userNewsList" style="color:#fff">查看全部</a></p>
-					 
+				<p style="text-align:center;margin-top: 6px;"><a href="${fctx}/core/userNewsList" style="color:#fff">查看全部 </a></p>
 				</ul>
 			</div>
 		</div>
-		
+	
 		<!--侧栏用户页面--左滑显示-->
 		<div class="sidebar_user">
 			<div class="sidebar_user_info">
-			
+		
 			<c:choose>
-				<c:when test="${fns:getUser()}==''">
+				<c:when test="${fns:getUser().id} == ''">
 					<!--未登录-->
 					<img class="head" src="${ctxStatic}/zhiban/img/head_default.png" />
-					<p onclick="window.location='user_login.html'">登录</p>
+					<!-- <p onclick="window.location='user_login.html'">登录</p> -->
+						<a href="${fctx}/f/core/login" >登录</a>
 				</c:when>
 				<c:otherwise>
-					<!--登录-->
-					<img class="head" src="${fns:getUser().photo}"/>
-					<p>${fns:getUser().name}</p>
+						<!--登录-->
+						<img class="head" src="${fns:getUser().photo}"/>
+						<p>${fns:getUser().name}</p>
 				</c:otherwise>
 			</c:choose>
 			
@@ -180,13 +183,16 @@
 					</svg>
 					<span>我要制作名片</span>
 				</li>
-				<li class="slidebar_link_mt" onclick="window.location='index.html'">
-					<svg class="icon" aria-hidden="true">
+				<li class="slidebar_link_mt">
+				<a href="${fctx}/core/showMe">
+				<svg class="icon" aria-hidden="true">
 						<use xlink:href="#icon-chengyuanyingyonchakanqi"></use>
 					</svg>
 					<span>查看我的名片</span>
+				</a>
+					
 				</li>
-				<li class="slidebar_link_mt" onclick="window.location='Magazine_list.html'">
+				<li class="slidebar_link_mt" onclick="window.location='Magazine_list.html'"<
 					<svg class="icon" aria-hidden="true">
 						<use xlink:href="#icon-yijin04-guanyuwomen"></use>
 					</svg>
@@ -355,5 +361,4 @@
 			});
 		</script>
 	</body>
-
 </html>

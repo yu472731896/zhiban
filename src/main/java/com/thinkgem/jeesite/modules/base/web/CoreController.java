@@ -121,6 +121,21 @@ public class CoreController extends BaseController {
 		return "modules/zhiban/Magazine_list";
 	}
 	
+	/**
+	 *查看我的名片 
+	 * @return
+	 */
+	@RequestMapping(value = "showMe")
+	public String userNewsList(HttpServletRequest request, HttpServletResponse response, Model model){
+		
+		User curruser = UserUtils.getUser();
+		if(null != curruser && StringUtils.isNoneBlank(curruser.getId())) {
+			return "redirect:"+Global.getFrontPath()+"/core/view/?userid="+curruser.getId();
+		}
+		
+		return "modules/zhiban/userLogin";
+	}
+	
 	//登陆跳转页面
 	@RequestMapping(value = "login")
 	public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
@@ -131,7 +146,7 @@ public class CoreController extends BaseController {
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String loginIn(User user, HttpServletRequest request, HttpServletResponse response, Model model) {
 		
-	Principal principal = UserUtils.getPrincipal();
+		Principal principal = UserUtils.getPrincipal();
 		
 		// 如果已经登录，则跳转到管理首页
 		if(principal != null){

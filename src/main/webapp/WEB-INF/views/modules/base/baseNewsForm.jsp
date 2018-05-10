@@ -41,14 +41,16 @@
 		<div class="control-group">
 			<label class="control-label">标题：</label>
 			<div class="controls">
-				<form:input path="title" htmlEscape="false" maxlength="255" class="input-xlarge "/>
+				<form:input path="title" htmlEscape="false" maxlength="255" class="input-xlarge req"/>
+				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">图片路径：</label>
 			<div class="controls">
-				<form:hidden id="path" path="path" htmlEscape="false" maxlength="255" class="input-xlarge"/>
+				<form:hidden id="path" path="path" htmlEscape="false" maxlength="255" class="input-xlarge required"/>
 				<sys:ckfinder input="path" type="files" uploadPath="/base/baseNews" selectMultiple="false"/>
+				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		
