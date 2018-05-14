@@ -28,6 +28,7 @@ import com.thinkgem.jeesite.modules.base.service.BaseUserInfoService;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.security.FormAuthenticationFilter;
 import com.thinkgem.jeesite.modules.sys.security.SystemAuthorizingRealm.Principal;
+import com.thinkgem.jeesite.modules.sys.service.SystemService;
 import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 
 @Controller
@@ -42,6 +43,9 @@ public class CoreController extends BaseController {
 	
 	@Autowired
 	private BaseNewsService baseNewsService;
+	
+	@Autowired
+	private SystemService systemService;
 	
 	
 /*	@ModelAttribute
@@ -65,16 +69,23 @@ public class CoreController extends BaseController {
 	@RequestMapping("/view/{userId}")
 	public String list(@PathVariable("userId") String userId , HttpServletRequest request, HttpServletResponse response, Model model) {
 		
-		//获取用户信息
-		User user = UserUtils.get(userId);
-		
-		//获取用户基础信息
 		BaseUserInfo newUserInfo = new BaseUserInfo();
-		List<BaseUserInfo> userInfoList= baseUserInfoService.findList(newUserInfo);
-		//获取新闻列表
 		BaseNews baseNews = new BaseNews();
+		User user = new User();
+		if(StringUtils.isNoneBlank(userId)){
+			//获取用户信息
+			user = UserUtils.get(userId);
+		}else{
+			user= UserUtils.getUser();
+		}
+		
+		newUserInfo.setUser(user);
+		baseNews.setUser(user);
+		//获取新闻列表
 		Page<BaseNews> newsPageList = baseNewsService.findPage(new Page<BaseNews>(0, 5), baseNews);
 		
+		//获取用户基础信息
+		List<BaseUserInfo> userInfoList= baseUserInfoService.findList(newUserInfo);
 		BaseUserInfo userInfo = userInfoList.get(0);
 		
 		//替换二维码地址中的 "|" 符号
@@ -130,7 +141,7 @@ public class CoreController extends BaseController {
 		
 		User curruser = UserUtils.getUser();
 		if(null != curruser && StringUtils.isNoneBlank(curruser.getId())) {
-			return "redirect:"+Global.getFrontPath()+"/core/view/?userid="+curruser.getId();
+			return "redirect:"+Global.getFrontPath()+"/core/view/"+curruser.getId();
 		}
 		
 		return "modules/zhiban/userLogin";
@@ -142,60 +153,13 @@ public class CoreController extends BaseController {
 		
 		return "modules/zhiban/userLogin";
 	}
-	
-	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String loginIn(User user, HttpServletRequest request, HttpServletResponse response, Model model) {
-		
-		Principal principal = UserUtils.getPrincipal();
-		
-		// 如果已经登录，则跳转到管理首页
-		if(principal != null){
-			/*return "redirect:" + adminPath;*/
-			return "redirect:"+Global.getFrontPath()+"/core";
-		}
-
-		String username = WebUtils.getCleanParam(request, FormAuthenticationFilter.DEFAULT_USERNAME_PARAM);
-		boolean rememberMe = WebUtils.isTrue(request, FormAuthenticationFilter.DEFAULT_REMEMBER_ME_PARAM);
-		boolean mobile = WebUtils.isTrue(request, FormAuthenticationFilter.DEFAULT_MOBILE_PARAM);
-		String exception = (String)request.getAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
-		String message = (String)request.getAttribute(FormAuthenticationFilter.DEFAULT_MESSAGE_PARAM);
-		
-		if (StringUtils.isBlank(message) || StringUtils.equals(message, "null")){
-			message = "用户或密码错误, 请重试.";
-		}
-
-		model.addAttribute(FormAuthenticationFilter.DEFAULT_USERNAME_PARAM, username);
-		model.addAttribute(FormAuthenticationFilter.DEFAULT_REMEMBER_ME_PARAM, rememberMe);
-		model.addAttribute(FormAuthenticationFilter.DEFAULT_MOBILE_PARAM, mobile);
-		model.addAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME, exception);
-		model.addAttribute(FormAuthenticationFilter.DEFAULT_MESSAGE_PARAM, message);
-		
-		if (logger.isDebugEnabled()){
-			logger.debug("login fail, active session size: {}, message: {}, exception: {}", 
-					sessionDAO.getActiveSessions(false).size(), message, exception);
-		}
-		
-		/*// 非授权异常，登录失败，验证码加1。
-		if (!UnauthorizedException.class.getName().equals(exception)){
-			model.addAttribute("isValidateCodeLogin", isValidateCodeLogin(username, true, false));
-		}
-		
-		// 验证失败清空验证码
-		request.getSession().setAttribute(ValidateCodeServlet.VALIDATE_CODE, IdGen.uuid());*/
-		
-		// 如果是手机登录，则返回JSON字符串
-		if (mobile){
-	        return renderString(response, model);
-		}
-		
-		/*return "modules/sys/sysLogin";*/
-		return "modules/zhiban/userLogin";
-	}
+	 
 	
 	//注册跳转页面
 	@RequestMapping(value = "register")
-	public String register(String userid, HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String register(User user, HttpServletRequest request, HttpServletResponse response, Model model) {
 		
+		model.addAttribute("user", user);
 		return "modules/zhiban/userRegister";
 	}
 	
@@ -236,4 +200,13 @@ public class CoreController extends BaseController {
 		System.out.println("进行文件保存--->");
 	}
 	
+	@RequestMapping(value = "checkLoginName")
+	public String checkLoginName(String oldLoginName, String loginName) {
+		if (loginName !=null && loginName.equals(oldLoginName)) {
+			return "true";
+		} else if (loginName !=null && systemService.getUserByLoginName(loginName) == null) {
+			return "true";
+		}
+		return "false";
+	}
 }

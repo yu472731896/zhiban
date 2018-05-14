@@ -1,56 +1,42 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="org.apache.shiro.web.filter.authc.FormAuthenticationFilter"%>
-<%@ include file="/WEB-INF/views/include/taglib.jsp"%><!DOCTYPE >
+<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>${fns:getConfig('productName')}</title>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="stylesheet" href="${ctxStatic}/jingle/css/Jingle.css">
+	<head>
+		<meta charset="utf-8" />
+		<title>登录</title>
+		<meta name="renderer" content="webkit" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--微信不缓存东西  start-->
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		<!--微信不缓存东西  end-->
+	<%-- 	<%@include file="/WEB-INF/views/include/head.jsp" %> --%>
+		<%@include file="/WEB-INF/views/include/zhibanHead.jsp" %>
+		<link rel="stylesheet" href="${ctxStatic}/jingle/css/Jingle.css">
     <link rel="stylesheet" href="${ctxStatic}/jingle/css/app.css">
-</head>
-<body>
-<div id="aside_container">
-</div>
-<div id="section_container">
-    <section id="login_section" class="active">
-        <header>
-            <h1 class="title">${fns:getConfig('productName')}</h1>
-            <!-- <nav class="right">
-                <a data-target="section" data-icon="info" href="#about_section"></a>
-            </nav> -->
-        </header>
-        <article data-scroll="true" id="login_article">
-	        <div class="indented">
-	            <form id="loginForm" action="${ctx}/login" method="post">
-	            	<div>&nbsp;</div>
-	            	<div class="input-group">
-		                <div class="input-row">
-		                    <label for="username">账号</label>
-		                    <input type="text" name="username" id="username" placeholder="请填写登录账号">
-		                </div>
-		                <div class="input-row">
-		                    <label for="password">密码</label>
-		                    <input type="password" name="password" id="password" placeholder="请填写登录密码">
-		                </div>
-		            </div>
-	            	<div class="input-group" id="validateCodeDiv" style="display:none;">
-		                <div class="input-row">
-		                    <label class="input-label mid" for="validateCode">验证码</label>
-		                    <sys:validateCode name="validateCode" inputCssStyle="margin-bottom:0;"
-		                    	imageCssStyle="padding-top:7px;"/>
-		                </div>
-		            </div>
-	            	<div>&nbsp;</div>
-	            	<input type="hidden" name="mobileLogin" value="true">
-	                <button id="btn" class="submit block" data-icon="key">登录</button>
-	            </form>
-	        </div>
-	    </article>
-    </section>
-</div>
+	</head>
+
+	<body class="bg_login">
+		<form class="user_login_box" action="${fctx}/login" method="post">
+			<div style="text-align: center;">
+				<svg class="icon" aria-hidden="true" style="width: 40px;height: 40px;">
+					<use xlink:href="#icon-login_user"></use>
+				</svg>
+			</div>
+			<h2 class="login_title">登录</h2>
+			<input id="username" name="username" type="text" value="" placeholder="请输入用户名或手机号码" />
+			<input id="password" name="password"  type="password" value="" placeholder="请输入密码" />
+			<p class="small_operation">
+				<!-- <a href="user_password.html">修改密码</a> -->
+				<a style="float: right;" href="${fctx}/core/login">还没有账号，去注册&gt;</a>
+			</p>
+			<button type="submit"  class="common_btn">登录</button>
+		</form>
+
 <!--<script type="text/javascript" src="${ctxStatic}/jingle/js/lib/cordova.js"></script>-->
 <!-- lib -->
 <script type="text/javascript" src="${ctxStatic}/jingle/js/lib/zepto.js"></script>
@@ -104,6 +90,7 @@ $('body').delegate('#login_section','pageshow',function(){
 		$('#login_article').addClass('active');
 	}
 });
-</script>
-</body>
+
+	</body>
+
 </html>

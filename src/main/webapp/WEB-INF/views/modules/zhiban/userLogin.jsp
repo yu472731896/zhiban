@@ -28,7 +28,7 @@
 			<input id="password" name="password"  type="password" value="" placeholder="请输入密码" />
 			<p class="small_operation">
 				<!-- <a href="user_password.html">修改密码</a> -->
-				<a style="float: right;" href="${ctx}/f/core/login">还没有账号，去注册&gt;</a>
+				<a style="float: right;" href="${ctx}/f/core/register">还没有账号，去注册&gt;</a>
 			</p>
 			<button type="submit"  class="common_btn">登录</button>
 		</form>

@@ -14,6 +14,7 @@
 	<bean name="shiroFilterChainDefinitions" class="java.lang.String">
 		<constructor-arg>
 			<value>
+				<!-- ${frontPath}/login = sperm -->
 				/static/** = anon
 				/userfiles/** = anon
 				${adminPath}/cas = cas
@@ -25,6 +26,7 @@
 			</value>
 		</constructor-arg>
 	</bean>
+	<!--   <bean id="formFilter" class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter"> </bean>   -->
 	
 	<!-- 安全认证过滤器 -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -37,6 +39,7 @@
 		
 		<property name="filters">
             <map>
+             	<!-- <entry key="sperm" value-ref="formFilter"/>   -->
                 <entry key="cas" value-ref="casFilter"/>
                 <entry key="authc" value-ref="formAuthenticationFilter"/>
             </map>
@@ -45,6 +48,7 @@
 			<ref bean="shiroFilterChainDefinitions"/>
 		</property>
 	</bean>
+	 
 	
 	<!-- CAS认证过滤器 -->  
 	<bean id="casFilter" class="org.apache.shiro.cas.CasFilter">  
