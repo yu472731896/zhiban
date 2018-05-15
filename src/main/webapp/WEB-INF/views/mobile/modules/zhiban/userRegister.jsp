@@ -13,7 +13,7 @@
 		
 		<script type="text/javascript">
 		$(document).ready(function() {
-			$("#no").focus();
+			/* $("#no").focus(); */
 			$("#inputForm").validate({
 				rules: {
 					loginName: {remote: "${fctx}/user/checkLoginName?oldLoginName=" + encodeURIComponent('${user.loginName}')}
@@ -52,7 +52,11 @@
 				<form:input path="loginName" htmlEscape="false" maxlength="50" class="required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
-			
+			<label class="control-label">姓名:</label>
+			<div class="controls">
+				<form:input path="name" htmlEscape="false" maxlength="50" class="required"/>
+				<span class="help-inline"><font color="red">*</font> </span>
+			</div>
 			<label class="control-label">手机:</label>
 			<div class="controls">
 				<form:input path="mobile" htmlEscape="false" maxlength="100"/>

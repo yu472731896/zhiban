@@ -28,7 +28,6 @@
 	<link rel="stylesheet" href="${ctxStatic}/zhiban/css/demo.css" />
 	<script src="${ctxStatic}/zhiban/js/swiper.min.js"></script>
 	<script src="${ctxStatic}/zhiban/js/swiper.animate.min.js"></script>
-	<script type="text/javascript" src="${ctxStatic}/zhiban/js/jquery-1.8.3.min.js"></script>
 	<script src="${ctxStatic}/zhiban/iconfont/iconfont.js"></script>
 	
 	<!-- baidu富文本 -->

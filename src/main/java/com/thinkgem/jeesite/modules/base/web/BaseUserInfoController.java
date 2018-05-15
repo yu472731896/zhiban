@@ -21,6 +21,8 @@ import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.base.entity.BaseUserInfo;
 import com.thinkgem.jeesite.modules.base.service.BaseUserInfoService;
+import com.thinkgem.jeesite.modules.sys.entity.User;
+import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 
 /**
  * 用户基础信息Controller
@@ -49,6 +51,10 @@ public class BaseUserInfoController extends BaseController {
 	@RequiresPermissions("base:baseUserInfo:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(BaseUserInfo baseUserInfo, HttpServletRequest request, HttpServletResponse response, Model model) {
+		User cuUser = UserUtils.getUser();
+		if(null != cuUser && StringUtils.isNoneBlank(cuUser.getId())){
+			baseUserInfo.setUser(cuUser);
+		}
 		Page<BaseUserInfo> page = baseUserInfoService.findPage(new Page<BaseUserInfo>(request, response), baseUserInfo); 
 		model.addAttribute("page", page);
 		return "modules/base/baseUserInfoList";

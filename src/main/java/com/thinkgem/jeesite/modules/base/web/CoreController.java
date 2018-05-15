@@ -1,5 +1,6 @@
 package com.thinkgem.jeesite.modules.base.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,8 +23,10 @@ import com.thinkgem.jeesite.common.utils.CacheUtils;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.modules.base.entity.BaseNews;
+import com.thinkgem.jeesite.modules.base.entity.BaseTurnPicture;
 import com.thinkgem.jeesite.modules.base.entity.BaseUserInfo;
 import com.thinkgem.jeesite.modules.base.service.BaseNewsService;
+import com.thinkgem.jeesite.modules.base.service.BaseTurnPictureService;
 import com.thinkgem.jeesite.modules.base.service.BaseUserInfoService;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.security.FormAuthenticationFilter;
@@ -43,6 +46,9 @@ public class CoreController extends BaseController {
 	
 	@Autowired
 	private BaseNewsService baseNewsService;
+	
+	@Autowired
+	private BaseTurnPictureService baseTurnPictureService;
 	
 	@Autowired
 	private SystemService systemService;
@@ -79,31 +85,49 @@ public class CoreController extends BaseController {
 			user= UserUtils.getUser();
 		}
 		
-		newUserInfo.setUser(user);
-		baseNews.setUser(user);
-		//获取新闻列表
-		Page<BaseNews> newsPageList = baseNewsService.findPage(new Page<BaseNews>(0, 5), baseNews);
-		
-		//获取用户基础信息
-		List<BaseUserInfo> userInfoList= baseUserInfoService.findList(newUserInfo);
-		BaseUserInfo userInfo = userInfoList.get(0);
-		
-		//替换二维码地址中的 "|" 符号
-		if(userInfo != null && StringUtils.isNoneBlank(userInfo.getWeixinMa())){
-			String weixinMa = userInfo.getWeixinMa();
-			userInfo.setWeixinMa(weixinMa.replace("|", "")); 
+		if(null != user){
+			newUserInfo.setUser(user);
+			baseNews.setUser(user);
+			//获取新闻列表
+			Page<BaseNews> newsPageList = baseNewsService.findPage(new Page<BaseNews>(0, 5), baseNews);
+			
+			//获取用户基础信息
+			List<BaseUserInfo> userInfoList= baseUserInfoService.findList(newUserInfo);
+			BaseUserInfo userInfo = new BaseUserInfo();
+			if(!userInfoList.isEmpty()){
+				userInfo = userInfoList.get(0);
+				//替换二维码地址中的 "|" 符号
+				if(userInfo != null && StringUtils.isNoneBlank(userInfo.getWeixinMa())){
+					String weixinMa = userInfo.getWeixinMa();
+					userInfo.setWeixinMa(weixinMa.replace("|", "")); 
+				}
+				//替换二维码地址中的 "|" 符号
+				if(userInfo != null && StringUtils.isNoneBlank(userInfo.getMusicFile())){
+					String musicFile = userInfo.getMusicFile();
+					userInfo.setMusicFile(musicFile.replace("|", "")); 
+				}
+			}
+			
+			BaseTurnPicture turnPicture = new BaseTurnPicture();
+			turnPicture.setUser(user);
+			//轮播图
+			List<BaseTurnPicture> OldturnPictureList = baseTurnPictureService.findList(turnPicture);
+			List<BaseTurnPicture> turnPictureList = new ArrayList<>();
+			for (BaseTurnPicture baseTurnPicture : OldturnPictureList) {
+				if(StringUtils.isNoneBlank(baseTurnPicture.getPath())){
+					String pathStr = baseTurnPicture.getPath().replace("|", "");
+					baseTurnPicture.setPath(pathStr);
+					turnPictureList.add(baseTurnPicture);
+				}
+			}
+			
+			model.addAttribute("user", user);
+			model.addAttribute("userInfo", userInfo);
+			model.addAttribute("newsList", newsPageList.getList());
+			model.addAttribute("turnPictureList", turnPictureList);
+		}else{
+			return "modules/zhiban/userLogin";
 		}
-		
-		//替换二维码地址中的 "|" 符号
-		if(userInfo != null && StringUtils.isNoneBlank(userInfo.getMusicFile())){
-			String musicFile = userInfo.getMusicFile();
-			userInfo.setMusicFile(musicFile.replace("|", "")); 
-		}
-		
-		model.addAttribute("user", user);
-		model.addAttribute("userInfo", userInfo);
-		model.addAttribute("newsList", newsPageList.getList());
-		
 		return "modules/zhiban/moban";
 	}
 	

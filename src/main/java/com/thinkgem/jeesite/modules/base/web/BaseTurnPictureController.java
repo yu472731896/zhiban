@@ -21,6 +21,7 @@ import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.base.entity.BaseTurnPicture;
 import com.thinkgem.jeesite.modules.base.service.BaseTurnPictureService;
+import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 
 /**
@@ -50,6 +51,10 @@ public class BaseTurnPictureController extends BaseController {
 	@RequiresPermissions("base:baseTurnPicture:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(BaseTurnPicture baseTurnPicture, HttpServletRequest request, HttpServletResponse response, Model model) {
+		User cuUser = UserUtils.getUser();
+		if(null != cuUser && StringUtils.isNoneBlank(cuUser.getId())){
+			baseTurnPicture.setUser(cuUser);
+		}
 		Page<BaseTurnPicture> page = baseTurnPictureService.findPage(new Page<BaseTurnPicture>(request, response), baseTurnPicture); 
 		model.addAttribute("page", page);
 		return "modules/base/baseTurnPictureList";

@@ -22,6 +22,7 @@ import com.thinkgem.jeesite.common.utils.Encodes;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.base.entity.BaseNews;
 import com.thinkgem.jeesite.modules.base.service.BaseNewsService;
+import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 
 /**
@@ -51,6 +52,10 @@ public class BaseNewsController extends BaseController {
 	@RequiresPermissions("base:baseNews:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(BaseNews baseNews, HttpServletRequest request, HttpServletResponse response, Model model) {
+		User cuUser = UserUtils.getUser();
+		if(null != cuUser && StringUtils.isNoneBlank(cuUser.getId())){
+			baseNews.setUser(cuUser);
+		}
 		Page<BaseNews> page = baseNewsService.findPage(new Page<BaseNews>(request, response), baseNews); 
 		model.addAttribute("page", page);
 		return "modules/base/baseNewsList";

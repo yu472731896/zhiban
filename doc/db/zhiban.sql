@@ -13,4 +13,11 @@ CHANGE COLUMN `index` `index_str`  varchar(24) CHARACTER SET utf8 COLLATE utf8_g
 ALTER TABLE `base_turn_picture`
 CHANGE COLUMN `index` `index_str`  varchar(24) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '顺序 ' AFTER `del_flag`;
 
+-----------------------------------------------------------------------------------
+#角色表添加 普通用户
+INSERT INTO `zhiban`.`sys_role` (`id`, `office_type`, `office_id`, `name`, `enname`, `role_type`, `data_scope`, `is_sys`, `useable`, `create_by`, `create_date`, `update_by`, `update_date`, `remarks`, `del_flag`) VALUES ('2', NULL, '1', '普通用户', 'user', 'user', '8', '1', '1', '1', '2018-05-15 08:44:40', '1', '2018-05-15 08:44:40', '', '0');
+ALTER TABLE `sys_user`
+MODIFY COLUMN `name`  varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '姓名' AFTER `no`;
+
+
 

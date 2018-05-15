@@ -76,16 +76,18 @@
 					<div class="swiper-wrapper">
 					
 					<!-- 循环遍历 -->
-					<%-- <c:forEach items="${page.list}" var="baseEnt">
-					
-					</c:forEach> --%>
-					
+					<c:forEach items="${turnPictureList}" var="turnPicture">
 						<a class="swiper-slide" href="#" title="">
+							<img src="${turnPicture.path}" />
+						</a>
+					</c:forEach>
+					
+						<%-- <a class="swiper-slide" href="#" title="">
 							<img src="${ctxStatic}/zhiban/img/banner_01.jpg" />
 						</a>
 						<a class="swiper-slide" href="#" title="">
 							<img src="${ctxStatic}/zhiban/img/banner_01.jpg" />
-						</a>
+						</a> --%>
 					</div>
 					<div class="pagination" style="background:transparent;text-align:center;"></div>
 				</div>

@@ -21,6 +21,7 @@ import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.base.entity.BaseIntroduce;
 import com.thinkgem.jeesite.modules.base.service.BaseIntroduceService;
+import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.utils.UserUtils;
 
 /**
@@ -50,6 +51,10 @@ public class BaseIntroduceController extends BaseController {
 	@RequiresPermissions("base:baseIntroduce:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(BaseIntroduce baseIntroduce, HttpServletRequest request, HttpServletResponse response, Model model) {
+		User cuUser = UserUtils.getUser();
+		if(null != cuUser && StringUtils.isNoneBlank(cuUser.getId())){
+			baseIntroduce.setUser(cuUser);
+		}
 		Page<BaseIntroduce> page = baseIntroduceService.findPage(new Page<BaseIntroduce>(request, response), baseIntroduce); 
 		model.addAttribute("page", page);
 		return "modules/base/baseIntroduceList";
