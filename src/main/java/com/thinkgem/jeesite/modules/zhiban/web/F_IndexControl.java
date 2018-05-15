@@ -13,10 +13,8 @@ public class F_IndexControl {
 	/**
 	 * 登录成功，进入管理首页
 	 */
-	@RequiresPermissions("user")
-	@RequestMapping(value = "${frontPath}/fFndex")
+	@RequestMapping(value = "${frontPath}/fIndex")
 	public String index(HttpServletRequest request, HttpServletResponse response) {
-		
 		
 		return "modules/zhiban/fIndex";
 	}

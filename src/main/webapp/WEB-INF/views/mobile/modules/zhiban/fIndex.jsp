@@ -11,12 +11,14 @@
 		<meta http-equiv="Pragma" content="no-cache" />
 		<meta http-equiv="Expires" content="0" />
 		<!--微信不缓存东西  end-->
-		<%@include file="/WEB-INF/views/include/head.jsp" %>
 		<%@include file="/WEB-INF/views/include/zhibanHead.jsp" %>
 	</head>
 
 	<body class="bg_index">
-		<h2>F 首页</h2>
+		<h1 style="color:red">F 首页</h1>
+		<h1 style="color:yellow">F 首页</h1>
+		<h1 style="color:green">F 首页</h1>
+		<a href="${fctx}/core/showMe"><span>查看我的名片</span></a>
 	</body>
 
 </html>
