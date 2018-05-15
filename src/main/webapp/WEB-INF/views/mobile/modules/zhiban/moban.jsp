@@ -186,15 +186,14 @@
 					<span>我要制作名片</span>
 				</li>
 				<li class="slidebar_link_mt">
-				<a href="${fctx}/core/showMe">
-				<svg class="icon" aria-hidden="true">
-						<use xlink:href="#icon-chengyuanyingyonchakanqi"></use>
-					</svg>
-					<span>查看我的名片</span>
-				</a>
-					
+					<a href="${fctx}/core/showMe">
+					<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-chengyuanyingyonchakanqi"></use>
+						</svg>
+						<span>查看我的名片</span>
+					</a>
 				</li>
-				<li class="slidebar_link_mt" onclick="window.location='Magazine_list.html'"<
+				<li class="slidebar_link_mt" onclick="window.location='Magazine_list.html'" >
 					<svg class="icon" aria-hidden="true">
 						<use xlink:href="#icon-yijin04-guanyuwomen"></use>
 					</svg>

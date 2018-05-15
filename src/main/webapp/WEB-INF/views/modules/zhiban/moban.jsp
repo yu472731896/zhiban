@@ -192,7 +192,7 @@
 				</a>
 					
 				</li>
-				<li class="slidebar_link_mt" onclick="window.location='Magazine_list.html'"<
+				<li class="slidebar_link_mt" onclick="window.location='Magazine_list.html'">
 					<svg class="icon" aria-hidden="true">
 						<use xlink:href="#icon-yijin04-guanyuwomen"></use>
 					</svg>
