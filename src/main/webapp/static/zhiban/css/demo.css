@@ -17,7 +17,7 @@ body {
 
 a {
 	text-decoration: none;
-	color: #4c4c4c;
+	color: #fff;
 }
 
 
@@ -43,15 +43,17 @@ a {
 
 .common_btn {
 	display: block;
-	margin: 40px auto;
-	padding: 4px 50px;
+	margin: 40px auto!important;
+	padding: 4px 50px!important;
 	color: #fff;
-	background: #66baea;
-	border: none;
-	line-height: 2em;
-	font-size: 1.2em;
-	border-radius: 6px;
+	background: #66baea!important;
+	border: none!important;
+	line-height: 2em!important;
+	font-size: 1.2em!important;
+	border-radius: 6px!important;
 	letter-spacing: 2px;
+	width:240px!important;
+	height: 40px!important;
 }
 
 
@@ -84,12 +86,28 @@ a {
 	line-height: 26px;
 	text-align: center;
 	letter-spacing: 4px;
+	color:#fff;
+	margin-bottom: 36px;
 }
-
+.controls{
+	overflow: hidden;
+	margin-top: 12px;
+}
+.control-label{
+	width:80px;
+	float:left;
+	text-align: right;
+	margin: 4px 16px 0 0 ;
+}
+label.error{
+	margin-left: 96px!important;
+}
 .user_login_box input {
 	padding: 0 6px;
-	width: 100%;
-	line-height: 2.6em;
+	float:left;
+	width: calc(100% - 100px);
+	height:30px;
+	line-height: 30px;
 	border-radius: 6px;
 	font-size: 1.0em;
 	box-sizing: border-box;
@@ -160,6 +178,19 @@ a {
 	width: 86%;
 	text-align: center;
 }
+.register_success{
+	text-align:left;
+	text-indent:2em;
+	width: calc(70% - 24px);
+	min-height:60px;
+	margin: 30% 15% 5%;
+	padding:6px 12px;
+	background: rgba(255,255,255,0.8);
+	color:#4c4c4c;
+	border-radius: 6px;
+	line-height: 30px;
+}
+
 /*Ê×Ò³*/
 .box_indexcontent{
 	background: rgba(12, 12, 12, 0.2);
@@ -499,7 +530,7 @@ a {
 }
 .information_text{
 	width: 90%;
-	margin: 10px auto;
+	margin: 10px auto 60px;
 }
 .information_pic{
 	width: 90%;
@@ -511,7 +542,7 @@ a {
 	right: 5%;
 	width: 30px;
 	height:30px;
-	background: #fff;
+	background: #eee;
 	border-radius: 50%;
 	padding: 8px;
 }

@@ -73,13 +73,13 @@ td {
 }
 
 * {
-	font-family: "PingHei", "PingFang SC", Arial, "FZLanTingHei-R-GBK", 方正兰亭黑, "Microsoft YaHei", 微软雅黑, STHeiti, 华文黑体, SimSun, 宋体, sans-serif, "Myriad Pro";
+	font-family: "PingHei", "PingFang SC", Arial, "FZLanTingHei-R-GBK", 鏂规鍏颁涵榛�, "Microsoft YaHei", 寰蒋闆呴粦, STHeiti, 鍗庢枃榛戜綋, SimSun, 瀹嬩綋, sans-serif, "Myriad Pro";
 	font-size: 14px;
 }
 
 
 /*:lang(zh-CN) {
-	font-family: "HanHei SC", "PingHei", "PingFang SC", 微软雅黑, "STHeitiSC-Light", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+	font-family: "HanHei SC", "PingHei", "PingFang SC", 寰蒋闆呴粦, "STHeitiSC-Light", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }*/
 
 ol,
@@ -117,12 +117,6 @@ ins {
 del {
 	text-decoration: line-through;
 }
-
-a {
-	color: #4C4C4C;
-	text-decoration: none;
-}
-
 
 /* tables still need 'cellspacing="0"' in the markup */
 
@@ -196,7 +190,7 @@ textarea {
 }
 
 
-/*文字换行*/
+/*鏂囧瓧鎹㈣*/
 
 * {
 	text-overflow: ellipsis;
@@ -225,11 +219,11 @@ pre {
 	word-wrap: break-word;
 	/* Internet Explorer 5.5+ */
 	line-height: 30px;
-	font-family: "PingHei", "PingFang SC", Arial, "FZLanTingHei-R-GBK", 方正兰亭黑, "Microsoft YaHei", 微软雅黑, STHeiti, 华文黑体, SimSun, 宋体, sans-serif, "Myriad Pro";
+	font-family: "PingHei", "PingFang SC", Arial, "FZLanTingHei-R-GBK", 鏂规鍏颁涵榛�, "Microsoft YaHei", 寰蒋闆呴粦, STHeiti, 鍗庢枃榛戜綋, SimSun, 瀹嬩綋, sans-serif, "Myriad Pro";
 }
 
 
-/*旋转*/
+/*鏃嬭浆*/
 
 .rotate {
 	-webkit-transform: rotate(-90deg);
@@ -238,7 +232,7 @@ pre {
 }
 
 
-/*修改chrome记住密码后自动填充表单的黄色背景*/
+/*淇敼chrome璁颁綇瀵嗙爜鍚庤嚜鍔ㄥ～鍏呰〃鍗曠殑榛勮壊鑳屾櫙*/
 
 input:-webkit-autofill {
 	-webkit-box-shadow: 0 0 0px 1000px white inset;
@@ -321,7 +315,7 @@ body {
 }
 
 
-/*提示框*/
+/*鎻愮ず妗�*/
 
 .tooltip {
 	position: absolute;
@@ -352,7 +346,7 @@ body {
 }
 
 
-/*提示类*/
+/*鎻愮ず绫�*/
 
 .loading,
 .tooltip,
