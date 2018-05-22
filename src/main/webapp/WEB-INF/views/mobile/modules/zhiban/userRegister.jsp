@@ -47,39 +47,34 @@
 				</svg>
 			</div>
 			<h2 class="login_title">注册</h2>
-			<label class="control-label">登陆名:</label>
+			
 			<div class="controls">
+				<label class="control-label"><font color="red">* </font>登录名</label>
 				<form:input path="loginName" htmlEscape="false" maxlength="50" class="required"/>
-				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
-			<label class="control-label">姓名:</label>
 			<div class="controls">
+				<label class="control-label"><font color="red">* </font>姓名</label>
 				<form:input path="name" htmlEscape="false" maxlength="50" class="required"/>
-				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
-			<label class="control-label">手机:</label>
 			<div class="controls">
+				<label class="control-label">手机号码</label>
 				<form:input path="mobile" htmlEscape="false" maxlength="100"/>
 			</div>
 			
-			<label class="control-label">密码:</label>
 			<div class="controls">
+				<label class="control-label"><font color="red">* </font>密码</label>
 				<input id="newPassword" name="newPassword" type="password" value="" maxlength="50" minlength="3" class="required"/>
-				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
-			<label class="control-label">确认密码:</label>
 			<div class="controls">
-				<input id="confirmNewPassword" name="confirmNewPassword" type="password" value="" maxlength="50" minlength="3" equalTo="#newPassword"/>
-				<span class="help-inline"><font color="red">*</font></span>
+				<label class="control-label"><font color="red">* </font>确认密码</label>
+				<input id="confirmNewPassword" name="confirmNewPassword" type="password" value="" maxlength="50" minlength="3" class="required" equalTo="#newPassword"/>
 			</div>
 			
-			<!-- <input type="tel" name="" value="" placeholder="请输入手机号码" />
-			<input type="password" name="" value="" placeholder="请输入密码" /> -->
 			<p class="small_operation">
 				<a style="float: right;" href="${fctx}/core/login">已有账号，立即登录&gt;</a>
 			</p>
 			<!-- <button class="common_btn"></button> -->
-			<input id="btnSubmit" class="btn btn-primary" type="submit" value="注册"/>
+			<button id="btnSubmit" class="btn btn-primary common_btn" type="submit">注册</button>
 		</form:form>
 	</body>
 
